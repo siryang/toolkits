@@ -23,6 +23,12 @@
       <height>61</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -72,6 +78,12 @@
       <height>61</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
    </widget>
    <widget class="QLineEdit" name="CustomSum">
     <property name="geometry">
@@ -81,6 +93,12 @@
       <width>161</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
     </property>
    </widget>
   </widget>

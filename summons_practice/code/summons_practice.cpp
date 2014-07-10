@@ -19,10 +19,16 @@ summons_practice::~summons_practice()
 void summons_practice::keyPressEvent(QKeyEvent  *event) 
 {
 	QString customNum = ui.CustomId->text();
-	switch (event->key())
+	size_t newSum = ui.CustomSum->text().toInt();
+	if (m_sum == newSum)
 	{
+		m_num++;
 	}
-	m_num++;
+	else
+	{
+		m_sum = newSum;
+		m_num = 0;
+	}
 	update();
 }
 
