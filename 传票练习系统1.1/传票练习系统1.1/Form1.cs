@@ -12,7 +12,7 @@ namespace 传票练习系统1._1
    
     public partial class Form1 : Form
     {
-        public static Float_s  array;
+        public static Float_s array = new Float_s();
         public float result;
         public Form1()
         {
@@ -21,9 +21,9 @@ namespace 传票练习系统1._1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
-           private void textBox1_KeyDown(object sender, KeyEventArgs e)
+          
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
 
             string del = ".88";
