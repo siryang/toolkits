@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summons_practice", "summons_practice.vcproj", "{0B43EBF4-5CA0-4F5B-BDE2-E00F8DAE4F85}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summons_practice", "config\summons_practice.vcproj", "{0B43EBF4-5CA0-4F5B-BDE2-E00F8DAE4F85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
