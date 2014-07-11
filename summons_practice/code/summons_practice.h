@@ -3,6 +3,7 @@
 
 #include <QKeyEvent> 
 #include <QtGui/QMainWindow>
+#include <time.h>
 #include "ui_summons_practice.h"
 
 class summons_practice : public QMainWindow
@@ -14,12 +15,20 @@ public:
 	~summons_practice();
 
 	void keyPressEvent(QKeyEvent *event);
+public slots:
+	void onCustomIdChanged();
+
 private:
 	void update();
+	void redo();
+	void addNew(float newNum);
+	void cancelAll();
+	void complete();
 
 	Ui::summons_practiceClass ui;
-	size_t m_num;
-	size_t m_sum;
+	QVector<float> m_inputted;
+	float m_sum;
+	clock_t m_startTime;
 };
 
 #endif // SUMMONS_PRACTICE_H

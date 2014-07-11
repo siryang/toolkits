@@ -14,7 +14,7 @@
    <string>summons_practice</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLineEdit" name="CustomId">
+   <widget class="QLineEdit" name="currentNum">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Custom Id</string>
+     <string>Custom Number</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -66,10 +66,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Number</string>
+     <string>Inputted</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="CurrentNum">
+   <widget class="QLineEdit" name="totalInputted">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -85,7 +85,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QLineEdit" name="CustomSum">
+   <widget class="QLineEdit" name="sum">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -99,6 +99,19 @@
       <family>Consolas</family>
       <pointsize>12</pointsize>
      </font>
+    </property>
+   </widget>
+   <widget class="QLabel" name="costTime">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>200</y>
+      <width>481</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Time Cost</string>
     </property>
    </widget>
   </widget>
@@ -125,5 +138,25 @@
  <resources>
   <include location="summons_practice.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>currentNum</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>summons_practiceClass</receiver>
+   <slot>onCustomIdChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>260</x>
+     <y>80</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onCustomIdChanged()</slot>
+ </slots>
 </ui>
