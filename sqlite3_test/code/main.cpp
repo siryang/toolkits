@@ -6,11 +6,12 @@
 #define PI 3.14
 
 using namespace std;
-
+using namespace common;
 
 bool sqlite3_write(sqlite3* handle, int key, void* data, size_t dataLen)
 {
-	sqlite3_prepare(handle, "insert into sqlite3_test ...")
+	sqlite3_stmt* stmt;
+	sqlite3_prepare(handle, "insert into sqlite3_test ...", 100, &stmt,  NULL);
 	return true;
 }
 
@@ -19,7 +20,7 @@ int main()
 	sqlite3* dbHandle;
 	sqlite3_open("sqlite3_test.db", &dbHandle);
 	vector<char> buffer;
-	readFile2Buffer("test.png", buffer);
+	readFile2Buffer(L"test.png", buffer);
 	// begin transaction
 
 	//for (int i = 0; i < 20000000; i++)

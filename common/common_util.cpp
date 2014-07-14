@@ -1,10 +1,12 @@
-#pragma once
+#include "common_util.h"
 #include <stdio.h>
 
+namespace common
+{
 inline size_t getFileSize(FILE* fp)
 {
 	long fileSize, tempSeek;
-	if (fp == nullptr){
+	if (fp == NULL){
 		return 0;
 	}
 
@@ -15,11 +17,11 @@ inline size_t getFileSize(FILE* fp)
 	return fileSize;
 }
 
-bool readFile2Buffer(const wchar_t* fname, vector<char>& buffer)
+bool readFile2Buffer(const wchar_t* fname, std::vector<char>& buffer)
 {
 	size_t fileLen;
-	FILE* fp = _wfopen(fname, "rb");
-	if (fp == nullptr){
+	FILE* fp = _wfopen(fname, L"rb");
+	if (fp == NULL){
 		return false;
 	}
 
@@ -30,4 +32,7 @@ bool readFile2Buffer(const wchar_t* fname, vector<char>& buffer)
 		fread(&buffer[0], 1, fileLen, fp);
 	}
 	fclose(fp);
+	return true;
+}
+
 }
