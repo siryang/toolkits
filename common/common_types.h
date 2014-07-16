@@ -1,8 +1,12 @@
 #pragma once
 
-
+typedef int int32;
+typedef unsigned int uint32;
+typedef short int16;
+typedef unsigned short uint16;
+typedef unsigned char uint8;
+typedef signed char int8;
 typedef long long int64;
-
 
 // I disable warning 4127 because CQ_ASSERT() will generate it.
 #pragma warning (disable: 4127) // warning C4127: conditional expression is constant

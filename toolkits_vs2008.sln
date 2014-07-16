@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite3_test", "configs\vs2008\sqlite3_test.vcproj", "{BAC28DB2-F6B0-4E0E-B677-8BCD24EBE58D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "agg-2.5", "..\..\open_projs\agg-2.5\config\agg-2.5.vcproj", "{D047F94E-C36F-45CB-BC09-0A611A25FAFB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "map_render_agg", "configs\vs2008\map_render_agg.vcproj", "{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAC28DB2-F6B0-4E0E-B677-8BCD24EBE58D}.Release|Win32.ActiveCfg = Release|Win32
+		{BAC28DB2-F6B0-4E0E-B677-8BCD24EBE58D}.Release|Win32.Build.0 = Release|Win32
+		{D047F94E-C36F-45CB-BC09-0A611A25FAFB}.Release|Win32.ActiveCfg = Release|Win32
+		{D047F94E-C36F-45CB-BC09-0A611A25FAFB}.Release|Win32.Build.0 = Release|Win32
+		{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}.Release|Win32.ActiveCfg = Release|Win32
+		{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
