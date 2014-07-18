@@ -44,7 +44,7 @@
 				Optimization="0"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="../../common;../../common/navi_core/include;&quot;F:\sir_yang_project\open_projs\agg-2.5\include&quot;;&quot;F:\sir_yang_project\open_projs\libpng-1.6.12\include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;AGG_BGRA32"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;AGG_RGBA32"
 				RuntimeLibrary="0"
 				BufferSecurityCheck="false"
 				EnableFunctionLevelLinking="true"
@@ -104,6 +104,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\map_render_agg\code\source\agg_frame.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\map_render_agg\code\source\agg_frame.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\map_render_agg\code\source\main.cpp"
 				>
 			</File>
@@ -113,6 +121,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\..\common\common_types.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\common\common_util.cpp"
 				>
