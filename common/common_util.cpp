@@ -119,7 +119,7 @@ bool writePng(const unsigned char* bitmap, size_t pixelSize, size_t width, size_
 
 	status = true;
 
-	for (y = 0; y < width; y++) 
+	for (y = 0; y < height; y++) 
 	{
 		png_free (png_ptr, row_pointers[y]);
 	}
