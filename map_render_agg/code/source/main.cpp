@@ -1,5 +1,6 @@
 #include "mapr_stdafx.h"
 #include "agg_frame.h"
+#include "agg_ellipse.h"
 #include "platform/agg_platform_support.h"
 
 extern "C"
@@ -12,7 +13,9 @@ using namespace std;
 class MaprenderFrame: public AggFrame
 {
 public:
-	MaprenderFrame(agg::pix_format_e format, bool flip_y): AggFrame(format, flip_y)
+	
+	MaprenderFrame(agg::pix_format_e format, bool flip_y): 
+		AggFrame(format, flip_y)
 	{
 		// init window size
 		// init center
@@ -27,19 +30,6 @@ public:
 
 	virtual void on_draw()
 	{
-		//vector<GridId> gridsInView;
-		//gridsInView.push_back(100);
-		//gridsInView.push_back(200);
-		//gridsInView.push_back(300);
-		//gridsInView.push_back(400);
-		//addBuffer(-64, 64, L"heart.png");\
-
-		//drawGrid(557467434, -64, 64);
-		//drawGrid(557467434, 192, 64);
-		//drawGrid(557467434, 64, 192);
-		//drawGrid(557467434, -64, 320);
-		//drawGrid(557467434, 192, 320);
-
 		bool draw = true;
 		int startRow = 1815;
 		int startCol = 5296;
@@ -57,6 +47,19 @@ public:
 				draw = !draw;
 			}
 		}
+
+		pixfmt pixf(rbuf_window());
+		renderer_base render(pixf);
+		renderer_scanline scanline(render);
+		scanline_type sl;
+		rasterizer ras;
+		agg::ellipse ell;
+		ell.init(220, 128, 10, 20);
+
+		scanline.color(agg::rgba(0,1,0));
+		ras.reset();
+		ras.add_path(ell);
+		agg::render_scanlines(ras, sl, scanline);
 	}
 };
 
