@@ -97,30 +97,26 @@ public:
 
 	virtual void on_draw()
 	{
-		pixfmt pf(rbuf_window());
-		renderer_base render(pf);
+		pixfmt pixelFormat(rbuf_window());
+		renderer_base render(pixelFormat);
 		render.clear(agg::rgba(1, 1, 1));
 		
 		size_t width, height;
 		vector<char> pngBuffer;
-		common::readPng("heart.png", &width, &height, pngBuffer);
-		create_img(0, width, height);
-
-		//rendering_buffer renderBuffer = rbuf_img(0);
-		//renderBuffer.attach((agg::int8u*)&pngBuffer[0], width, height, width * sizeof(pixfmt));
-
-		rendering_buffer windowBuffer = rbuf_window();
-		windowBuffer.attach((agg::int8u*)&pngBuffer[0], width, height, width * sizeof(pixfmt));
-
-
 		// load png
+		common::readPng("heart.png", &width, &height, pngBuffer);
 		// draw png
+		agg::rgba8* bitmap = (agg::rgba8*)&pngBuffer[0];
+		for (size_t y = 0; y < height; y++)
+		{
+			for (size_t x = 0; x < width; x++)
+			{
+				pixelFormat.copy_pixel(x, y, bitmap[y * width + x]);
+			}
+		}
 	};
 };
 
-#include <string>
-#include <xstring>
-using namespace std;
 int agg_main(int argc, char* argv[])
 {
 	enum flip_y_e { flip_y = true };
