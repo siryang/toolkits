@@ -37,17 +37,16 @@ bool readFile2Buffer(const wchar_t* fname, std::vector<char>& buffer)
 	return true;
 }
 
-static inline const unsigned char* pixel_at (const unsigned char* bitmap, size_t pixelSize, size_t width, int x, int y)
+static inline const char* pixel_at (const char* bitmap, size_t pixelSize, int width, int x, int y)
 {
 	return bitmap + (width * y + x) * pixelSize;
 }
 
-bool writePng(const unsigned char* bitmap, size_t pixelSize, size_t width, size_t height, const char *path)
+bool writePng(const char* bitmap, size_t pixelSize, int width, int height, const char *path)
 {
 	FILE * fp;
 	png_structp png_ptr = NULL;
 	png_infop info_ptr = NULL;
-	size_t x, y;
 	png_byte ** row_pointers = NULL;
 
 	/* "status" contains the return value of this function. At first
@@ -96,13 +95,13 @@ bool writePng(const unsigned char* bitmap, size_t pixelSize, size_t width, size_
 	/* Initialize rows of PNG. */
 
 	row_pointers = (png_byte**)png_malloc (png_ptr, height * sizeof (png_byte *));
-	for (y = 0; y < height; ++y) 
+	for (int y = 0; y < height; ++y) 
 	{
 		png_byte *row = (png_byte*)png_malloc (png_ptr, width * pixelSize);
 		row_pointers[y] = row;
-		for (x = 0; x < width; ++x) 
+		for (int x = 0; x < width; ++x) 
 		{
-			const unsigned char* pixel = pixel_at (bitmap, pixelSize, width, x, y);
+			const char* pixel = pixel_at (bitmap, pixelSize, width, x, y);
 			memcpy(row, pixel, pixelSize);
 			row += pixelSize;
 		}
@@ -119,7 +118,7 @@ bool writePng(const unsigned char* bitmap, size_t pixelSize, size_t width, size_
 
 	status = true;
 
-	for (y = 0; y < height; y++) 
+	for (int y = 0; y < height; y++) 
 	{
 		png_free (png_ptr, row_pointers[y]);
 	}
@@ -134,9 +133,9 @@ fopen_failed:
 	return status;
 }
 
-bool readPng( const char* fname, size_t* width, size_t* height, std::vector<char>& pngBuffer)
+bool readPng( const wchar_t* fname, int* width, int* height, std::vector<char>& pngBuffer)
 {
-	FILE* fp = fopen(fname, "rb");
+	FILE* fp = _wfopen(fname, L"rb");
 
 	char header[8]; // header of png
 	fread(header, 1, 8, fp);
@@ -155,13 +154,13 @@ bool readPng( const char* fname, size_t* width, size_t* height, std::vector<char
 
 	png_read_info(pngReader, pngInfo);
 	
-	png_get_IHDR(pngReader, pngInfo, width, height, &depth, &colorType, NULL, NULL, NULL);
+	png_get_IHDR(pngReader, pngInfo, (png_uint_32*)width, (png_uint_32*)height, &depth, &colorType, NULL, NULL, NULL);
 	/* read file */
 	setjmp(png_jmpbuf(pngReader));
 	png_bytep* rowPointers = (png_bytep*) malloc(sizeof(png_bytep) * *height);
 	size_t rowLen = png_get_rowbytes(pngReader, pngInfo);
 	pngBuffer.resize(rowLen * *height);
-	for (size_t y=0; y<*height; y++)
+	for (int y=0; y<*height; y++)
 	{
 		rowPointers[y] = (png_bytep)&pngBuffer[y * rowLen];
 	}

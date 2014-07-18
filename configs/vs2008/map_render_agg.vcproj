@@ -44,7 +44,7 @@
 				Optimization="0"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="../../common;../../common/navi_core/include;&quot;F:\sir_yang_project\open_projs\agg-2.5\include&quot;;&quot;F:\sir_yang_project\open_projs\libpng-1.6.12\include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;AGG_RGBA32"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;AGG_RGBA32;MAPBAR_ENABLE_PRECISE_MATH"
 				RuntimeLibrary="0"
 				BufferSecurityCheck="false"
 				EnableFunctionLevelLinking="true"
@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="util_win32_d.lib addition_win32_d.lib cq_stdlib_win32_d.lib dalr_win32_d.lib mapdal_win32_d.lib ws2_32.lib winmm.lib agg-2.5_win32.lib libpng.lib zlib.lib"
+				AdditionalDependencies="cq_stdlib_win32_d.lib util_win32_d.lib mapdal_win32_d.lib dalr_win32_d.lib ws2_32.lib winmm.lib wininet.lib agg-2.5_win32.lib libpng.lib zlib.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../common/navi_core/lib;&quot;F:\sir_yang_project\open_projs\agg-2.5\lib&quot;;&quot;F:\sir_yang_project\open_projs\libpng-1.6.12\lib&quot;"
 				GenerateDebugInformation="true"
@@ -112,7 +112,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\map_render_agg\code\source\grid_data_parser.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\map_render_agg\code\source\grid_data_parser.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\map_render_agg\code\source\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\map_render_agg\code\source\mapr_basic_type.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\map_render_agg\code\source\png_productor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\map_render_agg\code\source\png_productor.h"
 				>
 			</File>
 		</Filter>

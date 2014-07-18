@@ -19,7 +19,9 @@ typedef long long int64;
 #define CQ_HTONL(a) {a = ((((a) & 0x000000ff) << 24) | (((a) & 0x0000ff00) << 8) | (((a) & 0x00ff0000) >> 8)  | (((a) & 0xff000000) >> 24)); }
 #define CQ_HTONS(a) {a = ((((a) & 0x00ff) << 8) | (((a) & 0xff00) >> 8)); }
 
+#if !defined(element_of)
 #define element_of(o) (sizeof(o) / sizeof((o)[0]))
+#endif
 
 #define ASS_ASSERT(o) {do{\
 	if(!(o)){printf("%s, %d"#o, __FILE__, __LINE__); __debugbreak();}\
