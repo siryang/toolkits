@@ -1,6 +1,7 @@
+#include <cstring>
 #include <mysql.h>
 #include <iostream>
-
+#include <ctime>
 using namespace std;
 
 #ifdef _WIN
@@ -9,6 +10,7 @@ using namespace std;
 #include <stdio.h>
 #include <stdlib.h>
 #include <mysql.h>
+#include "common_plantform.h"
 
 static char *server_args[] = {
 	"this_program",       /* this string is not used */
@@ -59,26 +61,32 @@ public:
 
 	void testInsert()
 	{
+		timeval start;
+		gettimeofday(&start, NULL);
+
 		MYSQL_STMT* insertStmt;
 		int key = 0; 
 		char buffer[4096];
 		char insertCommand[256] = "INSERT INTO test VALUES(?,?)";
-		
+
 		insertStmt = mysql_stmt_init(m_mysql);
 		if (mysql_stmt_prepare(insertStmt, insertCommand, strlen(insertCommand)) != 0)
 		{
 			SHOW_MYSQL_ERROR("Init mysql connection fail!");
 			SHOW_STMT_ERRROR("Insert route result fail!");
 		}
-		mysql_query(m_mysql, "START TRANSACTION;");
 
-		//for (int i = 0; i < 10000; i++)
+		for (int i = 0; i < 10; i++)
 		{
+			mysql_query(m_mysql, "START TRANSACTION;");
+			timeval groupStart;
+			gettimeofday(&groupStart, NULL);
 			for (int j = 0; j < 1000; j++)
 			{
 				my_bool isNull = false;
-				unsigned long lengthInt = 4, lengthBlob = 4096;
+				unsigned long lengthInt = 4, lengthBlob;
 				MYSQL_BIND bind[2];
+				memset(bind, 0, sizeof(bind));
 
 				bind[0].buffer_type = MYSQL_TYPE_LONG;
 				bind[0].buffer = &(++key);
@@ -86,7 +94,7 @@ public:
 
 				bind[1].buffer_type = MYSQL_TYPE_BLOB;
 				bind[1].buffer = buffer;
-				bind[1].buffer_length = lengthBlob;
+				bind[1].buffer_length = 4096;
 				bind[1].is_null = &isNull;
 
 				mysql_stmt_bind_param(insertStmt, bind);
@@ -95,9 +103,17 @@ public:
 					cout << "exec fail" << endl;
 				}
 			}
+			timeval groupEnd, groupCost, totalCost;
+			gettimeofday(&groupEnd, NULL);
+			timersub(&groupEnd, &groupStart, &groupCost);
+			timersub(&groupEnd, &start, &totalCost);
+
+#define toSecond(a) ((a)->tv_sec + (a)->tv_usec / 1000000.0)
+			printf ("%6d, %6f, %6f\n", (i + 1) * 1000, toSecond(&groupCost), toSecond(&totalCost));
+			mysql_query(m_mysql, "END TRANSACTION;");
 		}
+
 		mysql_stmt_close(insertStmt);
-		mysql_query(m_mysql, "END TRANSACTION;");
 	}
 
 	void testSelect()

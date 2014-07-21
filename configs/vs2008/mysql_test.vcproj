@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="I:\proj\navi_online\code\common\mysql\include"
+				AdditionalIncludeDirectories="I:\proj\navi_online\code\common\mysql\include;../../common"
 				PreprocessorDefinitions="UNICODE;__LCC__"
 				RuntimeLibrary="0"
 				TreatWChar_tAsBuiltInType="false"
@@ -173,6 +173,26 @@
 			Filter="h"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+		</Filter>
+		<Filter
+			Name="share"
+			>
+			<File
+				RelativePath="..\..\common\common_plantform.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\common\common_plantform.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\common\common_util.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\common\common_util.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
