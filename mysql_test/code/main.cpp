@@ -1,16 +1,14 @@
 #include <cstring>
 #include <mysql.h>
 #include <iostream>
-#include <ctime>
-using namespace std;
 
-#ifdef _WIN
-#include <WinSock2.h>
-#endif
-#include <stdio.h>
-#include <stdlib.h>
-#include <mysql.h>
+#ifdef _WIN32
 #include "common_plantform.h"
+#else
+#include "sys/time.h"
+#endif
+
+using namespace std;
 
 static char *server_args[] = {
 	"this_program",       /* this string is not used */
@@ -57,6 +55,9 @@ public:
 			SHOW_MYSQL_ERROR("Init mysql connection fail!");
 			exit(1);
 		}
+
+		mysql_query(m_mysql, "drop table test;");
+		mysql_query(m_mysql, "create table test (`key` INT NULL, `data` BLOB NULL);");
 	}
 
 	void testInsert()
@@ -137,6 +138,7 @@ public:
 
 	~MysqlConntector()
 	{
+		mysql_query(m_mysql, "drop table test;");
 		mysql_close(m_mysql);
 		mysql_server_end();
 	}
