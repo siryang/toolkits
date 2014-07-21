@@ -7,17 +7,30 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "agg-2.5", "..\..\open_projs
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "map_render_agg", "configs\vs2008\map_render_agg.vcproj", "{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mysql_test", "configs\vs2008\mysql_test.vcproj", "{3B4DDFF5-66B4-4E7B-98F3-ADF8FD077F7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAC28DB2-F6B0-4E0E-B677-8BCD24EBE58D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BAC28DB2-F6B0-4E0E-B677-8BCD24EBE58D}.Debug|Win32.Build.0 = Debug|Win32
 		{BAC28DB2-F6B0-4E0E-B677-8BCD24EBE58D}.Release|Win32.ActiveCfg = Release|Win32
 		{BAC28DB2-F6B0-4E0E-B677-8BCD24EBE58D}.Release|Win32.Build.0 = Release|Win32
+		{D047F94E-C36F-45CB-BC09-0A611A25FAFB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D047F94E-C36F-45CB-BC09-0A611A25FAFB}.Debug|Win32.Build.0 = Debug|Win32
 		{D047F94E-C36F-45CB-BC09-0A611A25FAFB}.Release|Win32.ActiveCfg = Release|Win32
 		{D047F94E-C36F-45CB-BC09-0A611A25FAFB}.Release|Win32.Build.0 = Release|Win32
+		{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}.Debug|Win32.ActiveCfg = Release|Win32
+		{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}.Debug|Win32.Build.0 = Release|Win32
 		{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}.Release|Win32.ActiveCfg = Release|Win32
 		{508974A5-21A0-4ABF-8C1D-A16DFFC5C26A}.Release|Win32.Build.0 = Release|Win32
+		{3B4DDFF5-66B4-4E7B-98F3-ADF8FD077F7D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3B4DDFF5-66B4-4E7B-98F3-ADF8FD077F7D}.Debug|Win32.Build.0 = Debug|Win32
+		{3B4DDFF5-66B4-4E7B-98F3-ADF8FD077F7D}.Release|Win32.ActiveCfg = Release|Win32
+		{3B4DDFF5-66B4-4E7B-98F3-ADF8FD077F7D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -106,9 +106,9 @@ private:
 
 int main()
 {
-	fLog = _wfopen(L"log.txt", L"w+");
 	vector<char> buffer;
-	readFile2Buffer(L"test.png", buffer);
+	fLog = _wfopen(L"log.txt", L"w+");
+	readFile2Buffer(L"0200169L.jpg", buffer);
 
 	PngWriter writer;
 	writer.open(L"sqlite3_test.db");
@@ -117,9 +117,9 @@ int main()
 	clock_t start = clock();
 	clock_t lastTimestamp = start;
 
-	int commitSize = 5000;
-	//for (int i = 0; i < 2000000; i++)
-	for (int i = 0; i < 12000000; i += commitSize)
+	int commitSize = 1000;
+	for (int i = 0; i < 1000000; i+=commitSize)
+	//for (int i = 0; i < 12000000; i += commitSize)
 	{
 		writer.beginTransaction();
 		for (int j = 0; j < commitSize; j++)
@@ -133,7 +133,6 @@ int main()
 		CQ_LOG("%8d, %8f, %8f\n", i+commitSize, (currentTimestamp - lastTimestamp) / 1000.0f, (currentTimestamp - start) / 1000.0f);
 		lastTimestamp = currentTimestamp;
 	}
-	writer.endTransaction();
 	writer.close();
 
 	CQ_LOG("Test complete cost: %8f second\n", (clock() - start) / 1000.0f);
