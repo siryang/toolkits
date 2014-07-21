@@ -60,7 +60,15 @@ public:
 		sqlite3_exec(m_dbHandle, "Create Table test (ID INT KEY, DATA BLOB)", NULL, NULL, &errorMessage);
 		//sqlite3_exec(m_dbHandle, "PRAGMA automatic_index = true;PRAGMA page_size = 65536", NULL, NULL, NULL);
 		sqlite3_prepare_v2(m_dbHandle, "insert into test(ID, DATA) values(:id,:data)", 100, &m_writerStmt, NULL);
+		sqlite3_prepare_v2(m_dbHandle, "select gridData from test where ID=:id", 100, &m_selectStmt, NULL);
 		return true;
+	}
+
+	void close()
+	{
+		sqlite3_finalize(m_selectStmt);
+		sqlite3_finalize(m_writerStmt);
+		sqlite3_close(m_dbHandle);
 	}
 
 	void beginTransaction()
@@ -83,6 +91,15 @@ public:
 		}
 	}
 
+	bool select(int key)
+	{
+		sqlite3_bind_int(m_writerStmt, sqlite3_bind_parameter_index(m_writerStmt, ":id"), key);
+		sqlite3_step(m_writerStmt);
+		sqlite3_get_auxdata()
+		sqlite3_result_blob()
+		sqlite3_reset(m_writerStmt);
+	}
+
 	bool write(int key, void* data, size_t dataLen)
 	{
 		int index1 = sqlite3_bind_parameter_index(m_writerStmt, ":id");  
@@ -94,14 +111,10 @@ public:
 		return true;
 	}
 
-	void close()
-	{
-		sqlite3_finalize(m_writerStmt);
-		sqlite3_close(m_dbHandle);
-	}
 private:
 	sqlite3* m_dbHandle;
 	sqlite3_stmt* m_writerStmt;
+	sqlite3_stmt* m_selectStmt;
 };
 
 int main()
