@@ -696,9 +696,22 @@ void process(PixelType* buffer, int width, int height, int pitchInPixel, BOOL di
 	PixelType* palette = (PixelType*)malloc(sizeof(PixelType) * maxPaletteNum);
 	int paletteNum;
 	int x, y;	
+	int rsvPixelNum = 11;
+	PixelType rsvPixels[256];
 
-	paletteNum = extractPalete(buffer, width, height, pitchInPixel, palette, maxPaletteNum);
-	//paletteNum = extractPalete2(buffer, width, height, pitchInPixel, palette, maxPaletteNum, rsvPixels, rsvPixelNum);
+	rsvPixels[0] = Pixel_assemblePixel(179,209,255);//water
+	rsvPixels[1] = Pixel_assemblePixel(201,223,175);//green
+	rsvPixels[2] = Pixel_assemblePixel(250,158,37);//most yellow road
+	rsvPixels[3] = Pixel_assemblePixel(247,246,245);//background
+	rsvPixels[4] = Pixel_assemblePixel(255,191,55);//second yellow road
+	rsvPixels[5] = Pixel_assemblePixel(255,255,104);//third yellow road
+	rsvPixels[6] = Pixel_assemblePixel(253,247,216);//fourth yellow road
+	rsvPixels[7] = Pixel_assemblePixel(62,62,62);//black road
+	rsvPixels[8] = Pixel_assemblePixel(98,131,51);//green road
+	rsvPixels[9] = Pixel_assemblePixel(136,170,187);//gray label
+	rsvPixels[10] = Pixel_assemblePixel(0,102,187);//subway label
+
+	paletteNum = extractPalete2(buffer, width, height, pitchInPixel, palette, maxPaletteNum, rsvPixels, rsvPixelNum);
 	if (paletteNum == 0) return;
 
 	for(y = 0; y < height; y++)
@@ -767,9 +780,9 @@ static void render()
 
 			buffer = (PixelType*)Surface_lock(image);
 			process2(buffer, Rect_getWidth(srcArea), Rect_getHeight(srcArea), Rect_getWidth(srcArea));//
-			//process(buffer, Rect_getWidth(srcArea), Rect_getHeight(srcArea), Rect_getWidth(srcArea), FALSE);
 
-			// draw dither image
+			process(buffer, Rect_getWidth(srcArea), Rect_getHeight(srcArea), Rect_getWidth(srcArea), FALSE);
+
 			GDI_bitBlt(g_gdi, srcArea.right + 5, 0, image, &srcArea);
 
 			Surface_unlock(image);
