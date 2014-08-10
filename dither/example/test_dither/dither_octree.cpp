@@ -145,18 +145,34 @@ bool ColorNode_lessByLeafNum(ColorNode* left, ColorNode* right)
 int extractPalete_octree(PixelType* buffer, int width, int height, int pitchInPixel, PixelType* palettes, int maxPaletteNum)
 {
 	clock_t start = clock();
+	int pixelNumber = width * height;
+	vector<PixelType> pixels;
+	pixels.resize(pixelNumber);
+
+	PixelType* pixelStart = &pixels[0];
+	PixelType* pixelEnd = pixelStart + pixelNumber;
+	PixelType* pixel = pixelStart;
 
 	ColorNode root;
 	for(int y = 0; y < height; y++)
 	{
 		for(int x = 0; x < width; x++)
 		{
-			PixelType oc = buffer[y * pitchInPixel + x];
-			insertColor(&root, oc);
+			*pixel++ = buffer[y * pitchInPixel + x];
 		}
 	}
 
-	clock_t afterCounging = clock();
+	sort(pixelStart, pixelEnd);
+	pixelEnd = unique(pixelStart, pixelEnd);
+
+	clock_t sortEnd = clock();
+
+	for (pixel = pixelStart; pixel < pixelEnd; pixel++)
+	{
+		insertColor(&root, *pixel);
+	}
+
+	clock_t insertEnd = clock();
 
 	vector<ColorNode*> palettesNode;
 	vector<ColorNode*> maxLeafNodes;
@@ -196,10 +212,11 @@ int extractPalete_octree(PixelType* buffer, int width, int height, int pitchInPi
 	clock_t afterGetPalette = clock();
 
 #define GetFloatCost(start, end) ((end) - (start)) / 1000.0f
-	printf("total cost : %3f, counting cost: %3f, palette cost: %3f\n",
+	printf("total cost : %3f, sort cost: %3f, insert cost: %3f, palette cost: %3f\n",
 		GetFloatCost(start, afterGetPalette),
-		GetFloatCost(start, afterCounging),
-		GetFloatCost(afterCounging, afterGetPalette));
+		GetFloatCost(start, sortEnd),
+		GetFloatCost(sortEnd, insertEnd),
+		GetFloatCost(insertEnd, afterGetPalette));
 
 	return palettesNode.size();
 }

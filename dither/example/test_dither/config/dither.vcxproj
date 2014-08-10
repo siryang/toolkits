@@ -60,6 +60,7 @@
   <ItemGroup>
     <ClCompile Include="..\dither.cpp" />
     <ClCompile Include="..\dither_octree.cpp" />
+    <ClCompile Include="..\dither_shuffling.cpp" />
     <ClCompile Include="..\libpng\example.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\dither_octree.h" />
+    <ClInclude Include="..\dither_shuffling.h" />
     <ClInclude Include="..\libpng\png.h" />
     <ClInclude Include="..\libpng\pngconf.h" />
     <ClInclude Include="..\stdafx.h" />

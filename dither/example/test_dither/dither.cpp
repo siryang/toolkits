@@ -8,6 +8,7 @@ extern "C"
 #include <vector>
 #include <algorithm>
 #include "dither_octree.h"
+#include "dither_shuffling.h"
 
 using namespace std;
 
@@ -364,12 +365,12 @@ static void _PngEncoder_destruct(png_struct* png_ptr, png_info* info_ptr)
 void process(PixelType* buffer, int width, int height, int pitchInPixel, BOOL dither)
 {
 	//PixelType palette[] = {Pixel_fromX8R8G8B8(0), Pixel_assemblePixel4(250, 79, 40, 255), Pixel_assemblePixel4(221, 30, 22, 255)};
-	int maxPaletteNum = 128;
+	int maxPaletteNum = 64;
 	PixelType* palette = (PixelType*)malloc(sizeof(PixelType) * maxPaletteNum);
 	int paletteNum;
 	int x, y;	
 	
-	paletteNum = extractPalete_octree(buffer, width, height, pitchInPixel, palette, maxPaletteNum);
+	paletteNum = extractPalete_shuffling(buffer, width, height, pitchInPixel, palette, maxPaletteNum);
 	if (paletteNum == 0) return;
 
 	for(y = 0; y < height; y++)
@@ -431,6 +432,8 @@ static void render()
 			Handle image = Surface_alloc();
 			Rect srcArea;
 			Surface_loadExt(image, L"map4.png"); 
+			//Surface_loadExt(image, L"lena.png"); 
+			
 			//Surface_loadExt(image, L"dog.jpg"/*L"baboon.png"*/); 
 			Surface_getArea(image, &srcArea);
 
@@ -439,7 +442,7 @@ static void render()
 
 			buffer = (PixelType*)Surface_lock(image);
 
-			process(buffer, Rect_getWidth(srcArea), Rect_getHeight(srcArea), Rect_getWidth(srcArea), FALSE);
+			process(buffer, Rect_getWidth(srcArea), Rect_getHeight(srcArea), Rect_getWidth(srcArea), TRUE);
 
 			GDI_bitBlt(g_gdi, srcArea.right + 5, 0, image, &srcArea);
 
