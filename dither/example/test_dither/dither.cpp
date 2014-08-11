@@ -2,7 +2,7 @@ extern "C"
 {
 #include "stdafx.h"
 #include "gui_skin.h"
-#include "png.h"
+#include "libpng/png.h"
 };
 #include <map>
 #include <vector>

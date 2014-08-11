@@ -5,7 +5,14 @@
 #include <time.h>
 #include <hash_map>
 #include <map>
+extern "C"
+{
 #include "cq_types.h"
+#include "cq_stdlib.h"
+};
+
+#include "c_algorithm_dec.h"
+#include "c_algorithm_def.h"
 
 using namespace std;
 
@@ -30,6 +37,12 @@ struct PixelNode
 	int key;
 	PixelType color;
 };
+
+#define PixelNode_less(left, right) ((left)->key < (right)->key)
+
+algorithm_declare(PixelNode);
+algorithm_define(PixelNode)
+
 
 inline bool lessPixelNodeKey(PixelNode left, PixelNode right)
 {
@@ -150,7 +163,8 @@ int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitch
 
 	// 能否不排序来解决?
 	// 2.sort color
-	sort(pixelStart, pixelEnd, lessPixelNodeKey);
+	PixelNode_sort(pixelStart, pixelEnd);
+	//sort(pixelStart, pixelEnd, lessPixelNodeKey);
 	clock_t sortEnd = clock();
 
 	// make pattle
