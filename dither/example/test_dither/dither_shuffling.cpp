@@ -8,7 +8,7 @@
 #include "cq_types.h"
 
 using namespace std;
-
+using namespace stdext;
 
 inline unsigned int shuffling(unsigned int x)
 {
@@ -27,6 +27,7 @@ inline unsigned int shuffling(unsigned int x)
 
 struct PixelNode
 {
+	int freq;
 	int key;
 	PixelType color;
 };
@@ -36,97 +37,40 @@ inline bool lessPixelNodeKey(PixelNode left, PixelNode right)
 	return left.key < right.key;
 }
 
-//inline int lessPixel(const void* left, const void* right)
-//{
-//	PixelType& leftPixel = *(PixelType*)left;
-//	PixelType& rightPixel = *(PixelType*)right;
-//	if (leftPixel == rightPixel)
-//		return 0;
-//	
-//	if (leftPixel < rightPixel)
-//		return -1;
-//
-//	return 1;
-//}
-
-void testSortCost(PixelType* buffer, int width, int height, int pitchInPixel)
-{
-	clock_t start = clock();
-	// test
-	vector<PixelType> colors;
-	colors.resize(width * height);
-	for(int y = 0; y < height; y++)
-	{
-		for(int x = 0; x < width; x++)
-		{
-			colors[y * width + x] = buffer[y * pitchInPixel + x];
-		}
-	}
-
-	clock_t testStart = clock();
-	// sort
-	//sort(colors.begin(), colors.end());
-
-	// sort by heap;
-	//make_heap(colors.begin(), colors.end());
-	//sort_heap(colors.begin(), colors.end());
-
-	// qsort
-	//qsort(&colors[0], colors.size(), sizeof(PixelType), lessPixel);
-	clock_t sortCostTest = clock();
-	printf("test cost: %3f \n", (sortCostTest - start) / 1000.0f);
-	printf("sort cost: %3f \n", (sortCostTest - testStart) / 1000.0f);
-}
-
 void makePalette(PixelNode* pixelStart, int pixelNumber, PixelType* palettes, int maxPaletteNum)
 {
 	PixelType* pattle = palettes;
-	int unitNumber;
+	int unitNumber = pixelNumber / maxPaletteNum;
 	int r = 0,g = 0,b = 0;
 	PixelNode* pixelEnd = pixelStart + pixelNumber;
 	PixelNode* pixel = pixelStart;
 	for (int paletteIdx = 0; paletteIdx < maxPaletteNum; paletteIdx++)
 	{
-		if (pixelNumber == 0){
-			maxPaletteNum = paletteIdx;
-			break;
+		if (paletteIdx == maxPaletteNum - 1)
+		{
+			unitNumber += pixelNumber % maxPaletteNum;
 		}
 
-		unitNumber = (paletteIdx == maxPaletteNum - 1)? pixelNumber
-			: (pixelNumber / (maxPaletteNum - paletteIdx));
-
 		const PixelNode* lp;
-		int i = 0;
-		for (; i < unitNumber; i++)
+		int totalFreq = 0;
+		for (int i = 0; i < unitNumber; i++)
 		{
 			lp = pixel++;
 			// contribution to pattle color
-			r += Pixel_getR(lp->color);
-			g += Pixel_getG(lp->color);
-			b += Pixel_getB(lp->color);
+			r += Pixel_getR(lp->color) * lp->freq;
+			g += Pixel_getG(lp->color) * lp->freq;
+			b += Pixel_getB(lp->color) * lp->freq;
+			totalFreq += lp->freq;
 		}
 
-		if (paletteIdx != maxPaletteNum - 1)
-		{
-			for (; pixel != pixelEnd && lp->color == pixel->color; i++)
-			{
-				lp = pixel++;
-				r += Pixel_getR(lp->color);
-				g += Pixel_getG(lp->color);
-				b += Pixel_getB(lp->color);
-			}
-		}
-
-		r /= i; g /= i; b /= i;
+		r /= totalFreq; g /= totalFreq; b /= totalFreq;
 		*pattle++ = Pixel_assemblePixel(r, g, b);
-		pixelNumber -= i;
-		if (pixelNumber < 0)
-			__debugbreak();
 	}
 }
 
 int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitchInPixel, PixelType* palettes, int maxPaletteNum )
 {	
+	hash_map<PixelType, PixelNode*> colorMap;
 	clock_t start = clock();
 	// 1.get freq
 	int pixelNumber = width * height;
@@ -141,11 +85,23 @@ int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitch
 	{
 		for(int x = 0; x < width; x++)
 		{
-			PixelNode& node = *pixel++;
-			node.color = buffer[y * pitchInPixel + x];
-			node.key = shuffling(node.color);
+			const PixelType& color = buffer[y * pitchInPixel + x];
+			hash_map<PixelType, PixelNode*>::iterator iterNode = colorMap.find(color);
+			if (iterNode == colorMap.end())
+			{
+				colorMap.insert(pair<PixelType, PixelNode*>(color, pixel));
+				PixelNode& node = *pixel++;
+				node.color = color;
+				node.key = shuffling(color);
+				node.freq = 1;
+			}
+			else
+			{
+				iterNode->second->freq++;
+			}
 		}
 	}
+	pixelEnd = pixel;
 	clock_t copyEnd = clock();
 
 	// 能否不排序来解决?
@@ -154,7 +110,7 @@ int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitch
 	clock_t sortEnd = clock();
 
 	// make pattle
-	makePalette(pixelStart, pixelNumber, palettes, maxPaletteNum);
+	makePalette(pixelStart, pixelEnd - pixelStart, palettes, maxPaletteNum);
 
 	clock_t getPattleEnd = clock();
 
@@ -164,7 +120,6 @@ int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitch
 		GetFloatCost(start, copyEnd),
 		GetFloatCost(copyEnd, sortEnd),
 		GetFloatCost(sortEnd, getPattleEnd));
-
 
 	return maxPaletteNum;
 }
