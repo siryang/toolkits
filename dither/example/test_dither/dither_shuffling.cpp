@@ -91,8 +91,6 @@ void makePalette(PixelNode* pixelStart, int pixelNumber, PixelType* palettes, in
 		r /= i; g /= i; b /= i;
 		*pattle++ = Pixel_assemblePixel(r, g, b);
 		pixelNumber -= i;
-		if (pixelNumber < 0)
-			__debugbreak();
 	}
 }
 
