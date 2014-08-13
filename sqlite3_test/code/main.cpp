@@ -95,9 +95,20 @@ public:
 	{
 		sqlite3_bind_int(m_writerStmt, sqlite3_bind_parameter_index(m_writerStmt, ":id"), key);
 		sqlite3_step(m_writerStmt);
-		sqlite3_get_auxdata()
-		sqlite3_result_blob()
+		//sqlite3_get_auxdata()
+		//sqlite3_result_blob()
 		sqlite3_reset(m_writerStmt);
+		return true;
+	}
+
+	bool select(const char* keys)
+	{
+		char* selectCmd = (char*)malloc(100 + strlen(keys));
+		sprintf(selectCmd, "select * from test where ID in(%s)", keys);
+		clock_t start = clock();
+		sqlite3_exec(m_dbHandle, selectCmd, NULL, NULL, NULL);
+		printf("cost : %8f second\n", (clock() - start) / 1000.0f);
+		return true;
 	}
 
 	bool write(int key, void* data, size_t dataLen)
@@ -117,6 +128,7 @@ private:
 	sqlite3_stmt* m_selectStmt;
 };
 
+
 int main()
 {
 	vector<char> buffer;
@@ -131,7 +143,7 @@ int main()
 	clock_t lastTimestamp = start;
 
 	int commitSize = 1000;
-	for (int i = 0; i < 1000000; i+=commitSize)
+	for (int i = 0; i < 200000; i+=commitSize)
 	//for (int i = 0; i < 12000000; i += commitSize)
 	{
 		writer.beginTransaction();
@@ -146,6 +158,23 @@ int main()
 		CQ_LOG("%8d, %8f, %8f\n", i+commitSize, (currentTimestamp - lastTimestamp) / 1000.0f, (currentTimestamp - start) / 1000.0f);
 		lastTimestamp = currentTimestamp;
 	}
+
+	start = clock();
+	for (int i = 0; i < 100000; i+=3)
+	{
+		writer.select(i);
+	}
+	printf("select cost : %8f second\n", (clock() - start) / 1000.0f);
+
+	string cmd;
+	char buff[20];
+	for (int i = 0; i < 100000; i+=3)
+	{
+		cmd += buff;
+		//cmd = cmd + string(i == 0? "":",") + string(itoa(i, buff, 10));
+	}
+	writer.select(cmd.c_str());
+
 	writer.close();
 
 	CQ_LOG("Test complete cost: %8f second\n", (clock() - start) / 1000.0f);

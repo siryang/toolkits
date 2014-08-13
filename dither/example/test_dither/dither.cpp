@@ -1,9 +1,11 @@
+#pragma warning(disable:4996)
 extern "C"
 {
 #include "stdafx.h"
 #include "gui_skin.h"
 #include "libpng/png.h"
 };
+
 #include <map>
 #include <vector>
 #include <algorithm>
@@ -12,7 +14,6 @@ extern "C"
 
 using namespace std;
 
-#pragma warning(disable:4996)
 
 #define SCREEN_WIDTH   1800
 #define SCREEN_HEIGHT  500
