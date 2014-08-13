@@ -49,48 +49,6 @@ inline bool lessPixelNodeKey(PixelNode left, PixelNode right)
 	return left.key < right.key;
 }
 
-//inline int lessPixel(const void* left, const void* right)
-//{
-//	PixelType& leftPixel = *(PixelType*)left;
-//	PixelType& rightPixel = *(PixelType*)right;
-//	if (leftPixel == rightPixel)
-//		return 0;
-//	
-//	if (leftPixel < rightPixel)
-//		return -1;
-//
-//	return 1;
-//}
-
-void testSortCost(PixelType* buffer, int width, int height, int pitchInPixel)
-{
-	clock_t start = clock();
-	// test
-	vector<PixelType> colors;
-	colors.resize(width * height);
-	for(int y = 0; y < height; y++)
-	{
-		for(int x = 0; x < width; x++)
-		{
-			colors[y * width + x] = buffer[y * pitchInPixel + x];
-		}
-	}
-
-	clock_t testStart = clock();
-	// sort
-	//sort(colors.begin(), colors.end());
-
-	// sort by heap;
-	//make_heap(colors.begin(), colors.end());
-	//sort_heap(colors.begin(), colors.end());
-
-	// qsort
-	//qsort(&colors[0], colors.size(), sizeof(PixelType), lessPixel);
-	clock_t sortCostTest = clock();
-	printf("test cost: %3f \n", (sortCostTest - start) / 1000.0f);
-	printf("sort cost: %3f \n", (sortCostTest - testStart) / 1000.0f);
-}
-
 void makePalette(PixelNode* pixelStart, int pixelNumber, PixelType* palettes, int maxPaletteNum)
 {
 	PixelType* pattle = palettes;
