@@ -21,17 +21,18 @@ inline unsigned int shuffling(unsigned int x)
 {
 
 	//ab cd ef => e->c->b->d->e  => ac eb df
+	x = x & 0X00F0000F	// A | F
+		|x << 4 & 0x000F0000 |x << 8 & 0x0000F000 // C | E
+		|x >> 8 & 0x00000F00 |x >> 4 & 0x000000F0; // B | D
 
-	// shuffling G & B
-	unsigned int t;
-	t = (x ^ (x >> 4)) & 0x000000F0; x = x ^ t ^ (t << 4);
-	t = (x ^ (x >> 2)) & 0x00000C0C; x = x ^ t ^ (t << 2);
-	t = (x ^ (x >> 1)) & 0x00002222; x = x ^ t ^ (t << 1);
+	x = x & 0x00C03C03
+		| x << 2 & 0x00300300 | x << 4 & 0x000C00C0
+		| x >> 4 & 0x00030030 | x >> 2 & 0x0000C00C;
 
-	// shuffling R & G & B
-	x = (x & 0x0000FF00) << 4 | (x >> 8) & 0x00000F00 | x & 0xFFF000FF;
-	x = (x & 0x000F00F0) << 2 | (x >> 4) & 0x00030030 | x & 0xFFC0FC0F;
-	x = (x & 0x0030C30C) << 1 | (x >> 2) & 0x00104104 | x & 0xFF8F38F3;
+	x = x & 0x00861861 
+		| x << 1 & 0x00410410 | x << 2 & 0x00208208
+		| x >> 2 & 0x00104104 | x >> 1 & 0x00082082;
+
 	return x;
 }
 
@@ -141,4 +142,11 @@ int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitch
 
 	return maxPaletteNum;
 }
+
+
+
+
+
+
+
 
