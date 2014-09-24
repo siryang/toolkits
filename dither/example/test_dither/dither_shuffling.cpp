@@ -19,6 +19,9 @@ using namespace std;
 
 inline unsigned int shuffling(unsigned int x)
 {
+
+	//ab cd ef => e->c->b->d->e  => ac eb df
+
 	// shuffling G & B
 	unsigned int t;
 	t = (x ^ (x >> 4)) & 0x000000F0; x = x ^ t ^ (t << 4);
