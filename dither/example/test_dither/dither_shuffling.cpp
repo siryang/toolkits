@@ -1,10 +1,7 @@
 #include "dither_shuffling.h"
-#include <map>
 #include <vector>
 #include <algorithm>
 #include <time.h>
-#include <hash_map>
-#include <map>
 extern "C"
 {
 #include "cq_types.h"
@@ -16,14 +13,12 @@ extern "C"
 
 using namespace std;
 
-
 inline unsigned int shuffling(unsigned int x)
 {
-
 	//ab cd ef => e->c->b->d->e  => ac eb df
 	x = x & 0X00F0000F	// A | F
-		|x << 4 & 0x000F0000 |x << 8 & 0x0000F000 // C | E
-		|x >> 8 & 0x00000F00 |x >> 4 & 0x000000F0; // B | D
+		|x << 4 & 0x000F0000 | x << 8 & 0x0000F000 // C | E
+		|x >> 8 & 0x00000F00 | x >> 4 & 0x000000F0; // B | D
 
 	x = x & 0x00C03C03
 		| x << 2 & 0x00300300 | x << 4 & 0x000C00C0
@@ -46,7 +41,6 @@ struct PixelNode
 
 algorithm_declare(PixelNode);
 algorithm_define(PixelNode)
-
 
 inline bool lessPixelNodeKey(PixelNode left, PixelNode right)
 {
@@ -121,7 +115,7 @@ int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitch
 	}
 	clock_t copyEnd = clock();
 
-	// 能否不排序来解决?
+	// 可以用部分排序优化
 	// 2.sort color
 	PixelNode_sort(pixelStart, pixelEnd);
 	//sort(pixelStart, pixelEnd, lessPixelNodeKey);
@@ -138,7 +132,6 @@ int extractPalete_shuffling( PixelType* buffer, int width, int height, int pitch
 		GetFloatCost(start, copyEnd),
 		GetFloatCost(copyEnd, sortEnd),
 		GetFloatCost(sortEnd, getPattleEnd));
-
 
 	return maxPaletteNum;
 }
