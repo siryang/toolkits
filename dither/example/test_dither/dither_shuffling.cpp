@@ -16,7 +16,7 @@ using namespace std;
 inline unsigned int shuffling(unsigned int x)
 {
 	//ab cd ef => e->c->b->d->e  => ac eb df
-	x = x & 0XFFF0000F	// A | F
+	x = x & 0xFFF0000F	// A | F
 		|x << 4 & 0x000F0000 | x << 8 & 0x0000F000 // C | E
 		|x >> 8 & 0x00000F00 | x >> 4 & 0x000000F0; // B | D
 
