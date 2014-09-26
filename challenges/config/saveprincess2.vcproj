@@ -168,10 +168,22 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Header Files"
+			Name="Checkers"
 			Filter="h"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\saveprincess2\checkers.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\saveprincess2\checkers.h"
+				>
+			</File>
+			<File
+				RelativePath="..\saveprincess2\checkers_unittest.cpp"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
