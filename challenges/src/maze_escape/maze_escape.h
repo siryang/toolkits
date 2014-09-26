@@ -89,15 +89,24 @@ The bot moves 1 step DOWN w.r.t the maze. As the bot is facing DOWN side of the 
 with the bot at the center.
 */
 
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
+namespace MazeEscape
+{
+	enum Direction
+	{
+		left, top, right, bottom
+	};
 
-int main() {
+	struct Step
+	{
+		int xStart, xStep, yStart, yStep;
+	};
 
-	/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+	struct Point
+	{
+		int x, y;
+	};
+	Direction mazeEscape(char adjency[3][3]);
 
-	cin << 
-	return 0;
+
 }
+
