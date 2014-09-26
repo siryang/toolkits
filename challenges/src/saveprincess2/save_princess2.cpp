@@ -44,78 +44,53 @@ the size of the grid (5x5 in the sample testcase). Maximum score is 17.5
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include "save_princess2.h"
 
-
-void nextMove(int n, int r, int c, char grid[101][101])
+namespace SavePrincess
 {
-	int left, right, top, bottom;
-	int x, y;
-	for (int step = 1; step < n; step++)
+	void nextMove(int n, int r, int c, char grid[101][101])
 	{
-		// left
-		left = c - step;
-		right = c + step;
-		top = r - step;
-		bottom = r + step;
-
-		for (int x = left; x < right; x++)
+		int left, right, top, bottom;
+		int x, y;
+		for (int step = 1; step < n; step++)
 		{
-			if (grid[top][x] == 'p')
+			// left
+			left = c - step;
+			right = c + step;
+			top = r - step;
+			bottom = r + step;
+
+			for (int x = left; x < right; x++)
 			{
-				printf("TOP");
-				return;
+				if (grid[top][x] == 'p')
+				{
+					printf("TOP");
+					return;
+				}
+
+				if (grid[bottom][x] == 'p')
+				{
+					printf("BOTTOM");
+					return;
+				}
 			}
 
-			if (grid[bottom][x] == 'p')
+			for (int y = top; y < bottom; y++)
 			{
-				printf("BOTTOM");
-				return;
-			}
-		}
+				if (grid[y][left] == 'p')
+				{
+					printf("LEFT");
+					return;
+				}
 
-		for (int y = top; y < bottom; y++)
-		{
-			if (grid[y][left] == 'p')
-			{
-				printf("LEFT");
-				return;
-			}
-
-			if (grid[y][right] == 'p')
-			{
-				printf("RIGHT");
-				return;
+				if (grid[y][right] == 'p')
+				{
+					printf("RIGHT");
+					return;
+				}
 			}
 		}
 	}
 }
-int main(void) {
-
-	int n, r, c;
-
-#if defined(USE_TEST_CASE)
-	n = 5;
-	r = 3;
-	c = 1;
-
-	char grid[101][101] = {
-		{"-----"},
-		{"-----"},
-		{"-----"},
-		{"-m--p"},
-		{"-----"},
-	};
-#else
-	scanf("%d", &n);
-	scanf("%d", &r);
-	scanf("%d", &c);
 
 
-
-	for(int i=0; i<n; i++) {
-		scanf("%s[^\n]%*c", grid[i]);
-	}
-#endif
-	nextMove(n, r, c, grid);
-	return 0;
-}

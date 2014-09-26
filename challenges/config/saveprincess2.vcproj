@@ -108,7 +108,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="F:\sir_yang_project\open_projs\sqlite3"
+				AdditionalIncludeDirectories="../../common"
 				PreprocessorDefinitions=",UNICODE,QT_LARGEFILE_SUPPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB"
 				RuntimeLibrary="3"
 				TreatWChar_tAsBuiltInType="false"
@@ -163,7 +163,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\saveprincess2\main.cpp"
+				RelativePath="..\src\main.cpp"
 				>
 			</File>
 		</Filter>
@@ -173,15 +173,91 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\saveprincess2\checkers.cpp"
+				RelativePath="..\src\checkers\checkers.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\saveprincess2\checkers.h"
+				RelativePath="..\src\checkers\checkers.h"
 				>
 			</File>
 			<File
-				RelativePath="..\saveprincess2\checkers_unittest.cpp"
+				RelativePath="..\src\checkers\checkers_unittest.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Save Princess2"
+			>
+			<File
+				RelativePath="..\src\saveprincess2\save_princess2.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\saveprincess2\save_princess2.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\saveprincess2\save_princess2_unittest.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Digtal Camera"
+			>
+			<File
+				RelativePath="..\src\digtal_camera\digtal_camera.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\digtal_camera\digtal_camera.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\digtal_camera\digtal_camera_unittest.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Maze Escape"
+			>
+			<File
+				RelativePath="..\src\maze_escape\maze_escape.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\maze_escape\maze_escape.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\maze_escape\maze_escape_unittest.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="The Missing Characters"
+			>
+			<File
+				RelativePath="..\src\nlp\the_missing_characters.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\nlp\the_missing_characters.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\nlp\the_missing_characters_unittest.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Share"
+			>
+			<File
+				RelativePath="..\..\common\gtest\gtest-all.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\common\gtest\gtest.h"
 				>
 			</File>
 		</Filter>
