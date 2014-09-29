@@ -47,6 +47,21 @@ inline bool lessPixelNodeKey(PixelNode left, PixelNode right)
 	return left.key < right.key;
 }
 
+void midSort(PixelNode* start, PixelNode* end, int refKey)
+{
+	PixelNode* p = start;
+	PixelNode* q = end - 1;
+
+	while(q < p)
+	{
+		while(p->key <= refKey){
+			p++;
+		}
+
+		if (q->key > )
+	}
+}
+
 void makePalette(PixelNode* pixelStart, int pixelNumber, PixelType* palettes, int maxPaletteNum)
 {
 	PixelType* pattle = palettes;
@@ -63,7 +78,7 @@ void makePalette(PixelNode* pixelStart, int pixelNumber, PixelType* palettes, in
 
 		unitNumber = (paletteIdx == maxPaletteNum - 1)? pixelNumber
 			: (pixelNumber / (maxPaletteNum - paletteIdx));
-
+		
 		const PixelNode* lp;
 		int i = 0;
 		for (; i < unitNumber; i++)
