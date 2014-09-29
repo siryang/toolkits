@@ -32,6 +32,11 @@ public:
 		pthread_cond_wait(&m_cond, &m_mutex);
 	}
 
+	void signal()
+	{
+		pthread_cond_signal(&m_cond);
+	}
+
 	// lock(); wait(); unlock();
 	void boardcast()
 	{

@@ -11,7 +11,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mysql_test", "configs\vs200
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bd_map", "configs\vs2008\bd_map.vcproj", "{56966C00-DF3F-4027-B87F-1375959B25F4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "data_monitor", "configs\vs2008\data_monitor.vcproj", "{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glog_test", "configs\vs2008\glog_test.vcproj", "{4CF37E66-1684-4A58-AEEB-5D2F023FD0C5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cq_log", "configs\vs2008\cq_log.vcproj", "{F219CE93-A929-41D0-890C-43295DFAD615}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "read_copy_update", "configs\vs2008\rcu.vcproj", "{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +56,18 @@ Global
 		{56966C00-DF3F-4027-B87F-1375959B25F4}.Release|Win32.Build.0 = Release|Win32
 		{56966C00-DF3F-4027-B87F-1375959B25F4}.Release|x64.ActiveCfg = Release|x64
 		{56966C00-DF3F-4027-B87F-1375959B25F4}.Release|x64.Build.0 = Release|x64
+		{4CF37E66-1684-4A58-AEEB-5D2F023FD0C5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4CF37E66-1684-4A58-AEEB-5D2F023FD0C5}.Debug|Win32.Build.0 = Debug|Win32
+		{4CF37E66-1684-4A58-AEEB-5D2F023FD0C5}.Debug|x64.ActiveCfg = Debug|Win32
+		{4CF37E66-1684-4A58-AEEB-5D2F023FD0C5}.Release|Win32.ActiveCfg = Release|Win32
+		{4CF37E66-1684-4A58-AEEB-5D2F023FD0C5}.Release|Win32.Build.0 = Release|Win32
+		{4CF37E66-1684-4A58-AEEB-5D2F023FD0C5}.Release|x64.ActiveCfg = Release|Win32
+		{F219CE93-A929-41D0-890C-43295DFAD615}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F219CE93-A929-41D0-890C-43295DFAD615}.Debug|Win32.Build.0 = Debug|Win32
+		{F219CE93-A929-41D0-890C-43295DFAD615}.Debug|x64.ActiveCfg = Debug|Win32
+		{F219CE93-A929-41D0-890C-43295DFAD615}.Release|Win32.ActiveCfg = Release|Win32
+		{F219CE93-A929-41D0-890C-43295DFAD615}.Release|Win32.Build.0 = Release|Win32
+		{F219CE93-A929-41D0-890C-43295DFAD615}.Release|x64.ActiveCfg = Release|Win32
 		{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}.Debug|Win32.ActiveCfg = Debug|Win32
 		{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}.Debug|Win32.Build.0 = Debug|Win32
 		{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}.Debug|x64.ActiveCfg = Debug|Win32
