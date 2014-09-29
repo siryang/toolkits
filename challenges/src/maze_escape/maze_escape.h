@@ -89,24 +89,25 @@ The bot moves 1 step DOWN w.r.t the maze. As the bot is facing DOWN side of the 
 with the bot at the center.
 */
 
-namespace MazeEscape
+typedef enum Direction
 {
-	enum Direction
-	{
-		left, top, right, bottom
-	};
+	left, top, right, bottom
+} Direction;
 
-	struct Step
-	{
-		int xStart, xStep, yStart, yStep;
-	};
+typedef struct Step
+{
+	int xStart, xStep, yStart, yStep;
+} Step;
 
-	struct Point
-	{
-		int x, y;
-	};
-	Direction mazeEscape(char adjency[3][3]);
+typedef struct Point
+{
+	int x, y;
+} Point;
 
+#if defined UPLOAD_HANDRANK
+void mazeEscape(char adjency[3][3]);
+#else
+Direction mazeEscape(char adjency[3][3]);
+#endif
 
-}
 

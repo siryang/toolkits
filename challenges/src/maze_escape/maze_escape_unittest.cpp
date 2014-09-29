@@ -1,12 +1,14 @@
 #include "gtest/gtest.h"
-#include "maze_escape.h"
 #include "stdio.h"
-using namespace MazeEscape;
+extern "C"
+{
+#include "maze_escape.h"
+}
 
 /* Enter your code here. Read input from STDIN. Print output to STDOUT */
 const static char* g_grid[10] = {
 	"#######",
-	"#--#-b#",
+	"#--#b-#",
 	"#--#--#",
 	"#--#--#",
 	"e-----#",
@@ -87,7 +89,7 @@ void getNewPosition(Direction dir, int& x, int& y)
 	case left:
 		x -= 1; break;
 	case top:
-		y += 1; break;
+		y -= 1; break;
 	case right:
 		x += 1; break;
 	case bottom:
@@ -108,7 +110,7 @@ void showAjency(char adj[3][3])
 
 TEST(MazeEscape, test) {
 	char adjency[3][3];
-	int x = 5, y = 1;
+	int x = 4, y = 1;
 	Direction currentDir = right;
 	while (g_grid[y][x] != 'e')
 	{
@@ -118,5 +120,4 @@ TEST(MazeEscape, test) {
 		currentDir = (Direction)((currentDir + newDir - top + 4) % 4);
 		getNewPosition(currentDir, x, y);
 	}
-	
 }
