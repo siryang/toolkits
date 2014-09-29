@@ -18,7 +18,7 @@ public:
 		FATAL,
 		maxLevel
 	};
-
+	
 	typedef std::basic_ostream<char, std::char_traits<char>> CoutType;
 	typedef CoutType& (*StandardEndLine)(CoutType&);
 	typedef WORD WinCoutColor;
@@ -39,28 +39,27 @@ public:
 
 	void log2File(const wchar_t* fname);
 	void closeLogFile();
-
-	void setLogLevel(CQLogLevel level);
-	bool levelFilter(){
-		return m_currentLevel >= m_filterLevel;
+	void setLogFilter(CQLogLevel level){
+		m_filterLevel = level;
 	}
 
+#if defined CQ_NEEDS_LOG
 	template<class T>
 	inline CQLog& operator << (T data)
 	{
-		if (!levelFilter()){
-			return *this;
-		}
-		cout << data;
 		if (m_ofs.is_open()){
-			m_ofs << data;
+			m_ofs << m_currentLevelString << data;
+		}
+
+		if (levelFilter()){
+			cout << data;
 		}
 		return *this;
 	}
 	
 	template<>
 	inline CQLog& operator << (CQLogLevel level){
-		setLogLevel(level);
+		setCurrentLogLevel(level);
 		return *this;
 	}
 
@@ -76,12 +75,33 @@ public:
 
 	CQLog& operator<< (StandardEndLine sln);
 
+#else
+	template<class T>
+	inline CQLog& operator << (T data)
+	{
+		data;
+		return *this;
+	}
+
+	inline CQLog& operator<< (StandardEndLine sln){
+		sln;
+		return *this;
+	}
+#endif
+
 private:
+	void setCurrentLogLevel(CQLogLevel level);
 	CQLog& showWideString(const wchar_t* str);
+	const char* level2String(CQLogLevel level);
+	bool levelFilter(){
+		return m_currentLevel >= m_filterLevel;
+	}
 
 	wchar_t m_fname[MAX_PATH];
 	std::ofstream m_ofs;
 	CQLogLevel m_currentLevel;
+	const char* m_currentLevelString;
+
 	CQLogLevel m_filterLevel;
 
 	const static WinCoutColor s_colorTable[maxLevel];

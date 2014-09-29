@@ -4,12 +4,12 @@ const static CQLog::WinCoutColor blue = FOREGROUND_BLUE|FOREGROUND_GREEN|FOREGRO
 const static CQLog::WinCoutColor red = FOREGROUND_RED|FOREGROUND_INTENSITY;
 const static CQLog::WinCoutColor green = FOREGROUND_GREEN|FOREGROUND_INTENSITY;
 const static CQLog::WinCoutColor yellow = FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_INTENSITY;
-const static CQLog::WinCoutColor white = FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE;
+const static CQLog::WinCoutColor white = FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_INTENSITY;
 
 const CQLog::WinCoutColor CQLog::s_colorTable[CQLog::maxLevel] = {
 	white,
-	blue,
 	yellow,
+	blue,
 	red
 };
 
@@ -20,19 +20,22 @@ void CQLog::log2File( const wchar_t* fname )
 	m_ofs.open(fname, ios_base::app);
 }
 
-void CQLog::setLogLevel( CQLogLevel level )
+void CQLog::setCurrentLogLevel( CQLogLevel level )
 {
 	if (level != m_currentLevel)
 	{
 		m_currentLevel = level;
 		HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); 
 		SetConsoleTextAttribute(hStdout, s_colorTable[level]);
+		m_currentLevelString = level2String(level);
 	}
 }
 
+#if defined CQ_NEEDS_LOG
 CQLog& CQLog::operator<<( StandardEndLine sln )
 {
 	if (!levelFilter()){
+		setCurrentLogLevel(INFO);
 		return *this;
 	}
 
@@ -41,9 +44,10 @@ CQLog& CQLog::operator<<( StandardEndLine sln )
 	if (m_ofs.is_open()){
 		sln(m_ofs);
 	}
-	setLogLevel(INFO);
+	setCurrentLogLevel(INFO);
 	return *this;
 }
+#endif
 
 CQLog& CQLog::showWideString( const wchar_t* str )
 {
@@ -60,4 +64,12 @@ void CQLog::closeLogFile()
 	if (m_ofs.is_open()){
 		m_ofs.close();
 	}
+}
+
+const char* CQLog::level2String( CQLogLevel level )
+{
+	const static char* levelStringMapping[] = {
+		"[INFO]", "[WARNING]", "[ERROR]", "[FATAL]"
+	};
+	return levelStringMapping[level];
 }
