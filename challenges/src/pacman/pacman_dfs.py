@@ -16,9 +16,9 @@ def direction(x1, y1, x2, y2):
 		return "DOWN"
 	if y1 > y2:
 		return "UP"
-
+		
 class NodeHeap:
-	def __init__(self, colNum, rowNum, xStart, yStart, xEnd, yEnd, data):
+	def __init__(self, rowNum, colNum, yStart, xStart, yEnd, xEnd, data):
 		self.m_colNum = colNum
 		self.m_rowNum = rowNum
 
@@ -48,25 +48,18 @@ class NodeHeap:
 		heapq.heappush(self.m_openHeap, (fCost + hCost, (x, y, xParent, yParent, fCost)))
 
 	def step(self):
-		#print (len(self.m_openHeap))
 		(cost, (x, y, xP, yP, pFCost)) = heapq.heappop(self.m_openHeap)
+		# close Node
 		self.m_closed[(x, y)] = (xP, yP)
 		if x == self.xEnd and y == self.yEnd:
 			self.m_arrival = True
 			return
 
-		#print "x:%d, y:%d" % (x, y)
-		# close Node
 		++pFCost
 		self.detect(x, y, x+1, y, pFCost)
 		self.detect(x, y, x-1, y, pFCost)
 		self.detect(x, y, x, y+1, pFCost)
 		self.detect(x, y, x, y-1, pFCost)
-
-	def dfsAStar(self):
-		while not self.m_arrival:
-			self.step()
-		self.collect()
 
 	def collect(self):
 		x = self.xEnd
@@ -80,23 +73,20 @@ class NodeHeap:
 		step.reverse()
 		print step
 
-# nodes = map(pos:cost)
-	
+def dfsAStar(r, c, pacman_r, pacman_c, food_r, food_c, grid):
+	nodeHeap = NodeHeap(r, c, pacman_r, pacman_c, food_r, food_c, grid)
+	while not nodeHeap.m_arrival:
+		nodeHeap.step()
+	nodeHeap.collect()
 
 def format2IntStr(str):
 	str = str.split(" ")
 	return (int(str[0]), int(str[1]))
 
-def parseArgs():
-	pacmanPos = format2IntStr(raw_input())
-	foodPos = format2IntStr(raw_input())
-
-def main():
-	#parseArgs()	
-	pacmanPos = format2IntStr("3 9")
-	foodPos = format2IntStr("5 1")
-	matrix = format2IntStr("7 20")
-	print pacmanPos
+def test():
+	pacman_r, pacman_c = [ int(i) for i in "3 9".strip().split() ]
+	food_r, food_c = [ int(i) for i in "5 1".strip().split() ]
+	r,c = [ int(i) for i in "7 20".strip().split() ]
 
 	data = list()
 	data.append('''%%%%%%%%%%%%%%%%%%%%''')
@@ -106,10 +96,24 @@ def main():
 	data.append('''%%%%%%%%%%%%%%%%%%-%''')
 	data.append('''%.-----------------%''')
 	data.append('''%%%%%%%%%%%%%%%%%%%%''')
+	return (r, c, pacman_r, pacman_c, food_r, food_c, data)
 
-	nodeHeap = NodeHeap(matrix[1], matrix[0], pacmanPos[1], pacmanPos[0], foodPos[1], foodPos[0], data)
-	nodeHeap.dfsAStar()
+def parseArgs():
+	pacman_r, pacman_c = [ int(i) for i in raw_input().strip().split() ]
+	food_r, food_c = [ int(i) for i in raw_input().strip().split() ]
+	r,c = [ int(i) for i in raw_input().strip().split() ]
 
+	grid = []
+	for i in xrange(0, r):
+	    grid.append(raw_input().strip())
+
+	return (r, c, pacman_r, pacman_c, food_r, food_c, grid)
+
+def main():
+	#(r, c, pacman_r, pacman_c, food_r, food_c, grid) = parseArgs();
+	(r, c, pacman_r, pacman_c, food_r, food_c, grid) = test();
+
+	dfsAStar(r, c, pacman_r, pacman_c, food_r, food_c, grid)
 
 if __name__ == '__main__':
 	main()
