@@ -1,4 +1,8 @@
 #!/usr/bin/python
+import heapq
+
+def distance(x1, y1, x2, y2):
+	return abs(x1-x2) + abs(y1-y2)
 
 
 def direction(x1, y1, x2, y2):
@@ -13,8 +17,8 @@ def direction(x1, y1, x2, y2):
 		return "DOWN"
 	if y1 > y2:
 		return "UP"
-
-class NodeStack:
+		
+class NodeHeap:
 	def __init__(self, rowNum, colNum, yStart, xStart, yEnd, xEnd, data):
 		self.m_colNum = colNum
 		self.m_rowNum = rowNum
@@ -27,46 +31,38 @@ class NodeStack:
 
 		self.m_data = data
 
-		self.m_closed = set()
-		self.m_closed.add((xStart, yStart))
-		self.m_traveled = [(xStart, yStart, 0, 0)]
+		self.m_closed = dict()
+		self.m_openHeap = [] # cost, position
+		heapq.heappush(self.m_openHeap, (0, (xStart, yStart, 0, 0, 0)))
+
 		self.m_arrival = False
-
-		self.m_stepNum = 0
-
 	def arrival(self):
 		return self.m_arrival
     
-	def detect(self, xTo, yTo, xFrom, yFrom, xP, yP):
-		if xTo == xP and yTo == yP:
-			return False
-
-		if xTo >= self.m_colNum or yTo >= self.m_rowNum or self.m_data[yTo][xTo] == "%" or (xTo, yTo) in self.m_closed:
-			return False
-		else:
-			self.m_closed.add((xTo, yTo))
-			self.m_traveled.append((xTo, yTo, xFrom, yFrom))
-			return True
+	def detect(self, xParent, yParent, x, y, fCost):
+		if x >= self.m_colNum or y >= self.m_rowNum or (x, y) in self.m_closed:
+			return
  
+		if self.m_data[y][x] == "%":
+			self.m_closed[(x, y)] = (xParent, yParent)
+			return
+
+		hCost = distance(self.xEnd, self.yEnd, x, y)
+		heapq.heappush(self.m_openHeap, (fCost + hCost, (x, y, xParent, yParent, fCost)))
+
 	def step(self):
+		(cost, (x, y, xP, yP, pFCost)) = heapq.heappop(self.m_openHeap)
 		# close Node
-		(x, y, xP, yP) = self.m_traveled[-1]
+		self.m_closed[(x, y)] = (xP, yP)
 		if x == self.xEnd and y == self.yEnd:
 			self.m_arrival = True
 			return
 
-		if self.detect(x, y-1, x, y, xP, yP):
-			return
-		elif self.detect(x-1, y, x, y, xP, yP):
-			return
-		elif self.detect(x+1, y, x, y, xP, yP):
-			return
-		elif self.detect(x, y+1, x, y, xP, yP):
-			return
-		else:
-			# go back
-			self.m_traveled.pop();
-		
+		++pFCost
+		self.detect(x, y, x, y-1, pFCost)
+		self.detect(x, y, x-1, y, pFCost)
+		self.detect(x, y, x+1, y, pFCost)
+		self.detect(x, y, x, y+1, pFCost)
 
 	def collect(self):
 		x = self.xEnd
@@ -74,24 +70,19 @@ class NodeStack:
 		steps = list()
 		while not (self.m_xStart == x and self.m_yStart == y):
 			steps.append((x, y))
-			(x, y, xP, yP) = self.m_traveled.pop()
-			(x, y) = (xP, yP)
+			(x, y) = self.m_closed[(x, y)]
 		steps.append((x, y))
 		print len(steps) 
 		steps.reverse()
 		for step in steps :
 			print "%d %d" % (step[1], step[0])
         
-def dfs( r, c, pacman_r, pacman_c, food_r, food_c, grid):
-	nodeHeap = NodeStack(r, c, pacman_r, pacman_c, food_r, food_c, grid)
-	stepNum = 0
+def astar( r, c, pacman_r, pacman_c, food_r, food_c, grid):
+	nodeHeap = NodeHeap(r, c, pacman_r, pacman_c, food_r, food_c, grid)
 	while not nodeHeap.arrival():
 		nodeHeap.step()
-		stepNum = stepNum + 1
-		if (stepNum) > 100:
-			exit(0)
-	
-	nodeHeap.collect()
+	else:
+		nodeHeap.collect()
 
 ''' codes for commit to hankrank
 pacman_r, pacman_c = [ int(i) for i in raw_input().strip().split() ]
@@ -102,7 +93,7 @@ grid = []
 for i in xrange(0, r):
     grid.append(raw_input().strip())
 
-dfs(r, c, pacman_r, pacman_c, food_r, food_c, grid)
+astar(r, c, pacman_r, pacman_c, food_r, food_c, grid)
 '''
 
 def format2IntStr(str):
@@ -139,7 +130,7 @@ def main():
 	#(r, c, pacman_r, pacman_c, food_r, food_c, grid) = parseArgs();
 	(r, c, pacman_r, pacman_c, food_r, food_c, grid) = test();
 
-	dfs(r, c, pacman_r, pacman_c, food_r, food_c, grid)
+	astar(r, c, pacman_r, pacman_c, food_r, food_c, grid)
 
 if __name__ == '__main__':
 	main()
