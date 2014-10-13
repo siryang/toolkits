@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cq_log", "configs\vs2008\cq
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "read_copy_update", "configs\vs2008\rcu.vcproj", "{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk_demon", "configs\vs2008\gtk_demon.vcproj", "{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -74,6 +76,12 @@ Global
 		{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}.Release|Win32.ActiveCfg = Release|Win32
 		{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}.Release|Win32.Build.0 = Release|Win32
 		{4D7A9236-0E7E-4BDF-8E51-89BFDDB679F6}.Release|x64.ActiveCfg = Release|Win32
+		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Debug|Win32.Build.0 = Debug|Win32
+		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Debug|x64.ActiveCfg = Debug|Win32
+		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Release|Win32.ActiveCfg = Release|Win32
+		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Release|Win32.Build.0 = Release|Win32
+		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
