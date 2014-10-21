@@ -67,20 +67,28 @@ QMapWidget::~QMapWidget()
 
 void QMapWidget::timerEvent( QTimerEvent * event )
 {
-
+	CM_ASSERT(0);
 }
 
 void QMapWidget::paintEvent( QPaintEvent *event )
 {
-
+	CM_ASSERT(0);
 }
 
 void QMapWidget::resizeEvent( QResizeEvent * event )
 {
 
+	CM_ASSERT(0);
 }
 
 void QMapWidget::update()
 {
+	CM_ASSERT(0);
+
+}
+
+void QMapWidget::paintGL()
+{
+	CM_ASSERT(0);
 
 }
