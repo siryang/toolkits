@@ -3,7 +3,8 @@
 
 #include <QtGui/QMainWindow>
 #include "ui_bd_map.h"
-class BDMap : public QMapWindow
+
+class BDMap : public QMainWindow
 {
 	Q_OBJECT
 
@@ -12,7 +13,7 @@ public:
 	~BDMap();
 
 private:
-	Ui::BDMapClass m_ui;
+	Ui::BDMapClass ui;
 };
 
 #endif // TILE_SERVER_DEMO_H
