@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "read_copy_update", "configs
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk_demon", "configs\vs2008\gtk_demon.vcproj", "{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "macro_demon", "configs\vs2008\macro_demon.vcproj", "{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -82,6 +84,13 @@ Global
 		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Release|Win32.ActiveCfg = Release|Win32
 		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Release|Win32.Build.0 = Release|Win32
 		{BAA32324-ECAC-4C63-89FA-E9DAEFC70785}.Release|x64.ActiveCfg = Release|x64
+		{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}.Debug|Win32.ActiveCfg = Release|x64
+		{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}.Debug|x64.ActiveCfg = Release|x64
+		{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}.Debug|x64.Build.0 = Release|x64
+		{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}.Release|Win32.ActiveCfg = Release|Win32
+		{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}.Release|Win32.Build.0 = Release|Win32
+		{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}.Release|x64.ActiveCfg = Release|x64
+		{7C9651FA-FF38-4FD2-B969-8CB188DACD8A}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

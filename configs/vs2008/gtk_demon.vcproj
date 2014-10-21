@@ -191,6 +191,10 @@
 				RelativePath="..\..\gtk_demon\cairo\cairo_test.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\gtk_demon\gtk\gtk_window.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="gtest"
