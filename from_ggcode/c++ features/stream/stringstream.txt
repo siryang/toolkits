@@ -1,0 +1,16 @@
+	ifstream iFs(fname);
+	if (!iFs.is_open())
+		return false;
+
+	string line;
+	stringstream sStream;
+	Evf2DSegmentMappingItem dataItem;
+	while(getline(iFs, line))
+	{
+		sStream.clear();
+		sStream.str(line);
+		sStream >> dataItem.segmId >> dataItem.evfId.id1;
+		m_evf2Dsegm.push_back(dataItem);
+	}
+
+	iFs.close();

@@ -1,0 +1,20 @@
+1.jar包存放目录
+在xxx.jsp同级目录下创建WEB-INF、WEB-INF/class、WEB-INF/lib文件夹，同时，需要WEB-INF/web.xml文件。
+
+class中的properties暂时不清楚用途...........需要学习
+
+2.jni动态库查找目录
+通过修改bin/catalina.sh将.so路径放在LD_LIBRARY_PATH中。
+
+3.tomcat增加线程池
+<Executor name="tomcatThreadPool" namePrefix="catalina-exec-" maxThread="150" minSpareThreads="20" maxldleTime="60000"/>
+
+4.压缩输出数据
+<Connector  compression="on"   compressionMinSize="2048" />
+如果客户端不会直接访问tomcat，则不需要压缩，因为前段的Apache服务也会压缩
+
+
+
+
+
+

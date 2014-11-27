@@ -1,0 +1,6 @@
+ LNK2005:MSVCRT和LIBCMT冲突，一般是由于混合使用/MD（DLL）和/MT（LIB）编译导致的。需要验证使用的lib在编译时，输出类型和Runtime Library是否匹配。
+ 
+ LNK4255:引用的库中，有两个obj的文件名称冲突，会导致此名称的.obj代码不可调试。
+ 
+ 
+ 

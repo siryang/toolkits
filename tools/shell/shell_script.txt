@@ -1,0 +1,22 @@
+1.
+	if test "$str"="123"
+	then
+		...
+	fi
+
+	if ["str" = "123"]
+	then
+		...
+	fi
+	
+2.
+
+global_of_function=""
+function()
+{
+	local temp;
+	echo $1;
+}
+
+function "123"
+

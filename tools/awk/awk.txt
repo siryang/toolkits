@@ -1,0 +1,18 @@
+awk善于处理<分成多个逻辑字段>的文本
+
+awk脚本需要在头行加入
+	#!/bin/awk -f
+	
+awk [-F re] [parameter...] ['prog'] [-f progfile]
+	-F后接分割字符 以...分割
+
+例：awk '{print}' /etc/passwd
+	对/etc/passwd文件每行执行一个print
+	
+	awk '{print $0}' /etc/passwd
+	$0是当前行，对每行，print当前行
+	
+	awk '{cmd="rm "$0; system(cmd)}'
+
+awk类似于lisp要加{}
+一个带if的示例:	ll | awk '{if ($5 == May) {print $0}}'

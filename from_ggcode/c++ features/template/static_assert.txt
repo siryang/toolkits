@@ -1,0 +1,8 @@
+
+template<int> struct CompileTimeError;
+template<> struct CompileTimeError<true> {};
+
+#define LOKI_STATIC_CHECK(expr, msg) \
+    { Loki::CompileTimeError<((expr) != 0)> ERROR_##msg; (void)ERROR_##msg; } 
+
+// template<> struct CompileTimeError<false> {}; 没有定义，所以当expr是false时，会报错

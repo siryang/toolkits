@@ -1,0 +1,24 @@
+需要对设计模式来一个总结。总结放在周六。
+1.要求能默写出所有的设计模式
+2.回顾每个设计模式的优点。
+
+
+policies 
+policy class
+
+SingletonHolder use policies to manage thread safety.
+
+SmartPrt was build from policies.
+
+
+
+
+
+
+core elementary components
+behaviors set
+
+
+外观模式:
+	将一系列流程封装成一个动作，当执行这个动作时，会自动调用其一系列流程。
+

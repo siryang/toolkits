@@ -1,0 +1,6 @@
+Dos命令
+1.后台执行命令，类似linux 的 &
+	start cmd
+	
+2.
+

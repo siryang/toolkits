@@ -1,0 +1,31 @@
+
+
+bind2nd和mem_fun等STL适配器不接受引用形参
+
+operator的重载
+1.
+class M
+{
+	bool operator == (const M& right)
+	{}
+};
+
+2.
+bool operator == (const M& left, const M& right)
+{
+}
+
+其实，1和2是一样的
+因为C++编译的时候1会被编译成bool operator(const M& this, const M& right);
+
+成员函数编译的时候第一个参数是this
+
+
+
+
+
+
+
+
+
+

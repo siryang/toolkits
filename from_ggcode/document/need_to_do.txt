@@ -1,0 +1,10 @@
+
+	1.改一下SmallObjectAllocator提高兼容性
+	2.自己写一个HashMap
+	3.学一下正则表达式替换 VS的和VIM/Emacs
+		
+		find： 			g_globalData.find\({.+}, {.+}, {.+}
+		replace with:	find(g_globalData\.\1, g_globalData\.\2, \3
+		
+		正则表达式采用贪婪匹配，所以写find的技巧在于弄清楚每个表达式期望的结束条件。
+	

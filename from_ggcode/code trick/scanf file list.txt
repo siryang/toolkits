@@ -1,0 +1,73 @@
+
+// @detail linux和windows下扫描目录下文件名列表的方法
+void TmcProvince::scanfFileList(const wstring& dirname, const wchar_t* matchFile, vector<wstring>& cityNames)
+{
+#ifdef __linux__
+
+	char buffer[128];
+	string cmdStr;
+
+	char charDirname[128];
+	char matchStr[128];
+	utf16To8(dirname.c_str(), charDirname, element_of(charDirname));
+
+	if (matchFile)
+	{
+		utf16To8(matchFile, matchStr, element_of(matchStr));
+		cmdStr = string() + "find " + charDirname + " -name " + matchStr;
+	}
+	else
+	{
+		cmdStr = string() + "find " + charDirname;
+	}
+
+	FILE* fs = popen(cmdStr.c_str(), "r");
+	if (!fs)
+		return;
+
+	while (fgets(buffer, element_of(buffer), fs))
+	{
+		wchar_t wFilename[128];
+		utf8To16(buffer, wFilename, element_of(wFilename));
+		cityNames.push_back(getCityNameFromMidMifFilename(wFilename));
+	}
+
+	pclose(fs);
+}
+
+#else
+	// 1. find_first_file.
+	// 2. read district name file.
+	// the best way is list file, and get file path.
+	wstring cmdStr;
+	wchar_t buffer[128];
+	cmdStr = wstring() + L"dir /b /s " + dirname;
+	FILE* fs = _wpopen(cmdStr.c_str(), L"r");
+
+	if (fs == NULL)
+		return;
+
+	const wchar_t* matchStrTail = matchFile? matchFile + cq_wcslen(matchFile) - 1: NULL;
+
+	while(fgetws(buffer, element_of(buffer), fs))
+	{
+		wchar_t* bufferStrTail = buffer + cq_wcslen(buffer) - 1;
+		if (*bufferStrTail == L'\n')
+			*bufferStrTail-- = 0;
+
+		const wchar_t* tempMatchStrTail = matchStrTail;
+		while (tempMatchStrTail > matchFile 
+			&& bufferStrTail > buffer 
+			&& *(tempMatchStrTail--) == *(bufferStrTail--))
+		{}
+
+		if (tempMatchStrTail == matchFile)
+		{
+			midMifFiles.push_back(wstring(buffer));
+			cityNames.push_back(getCityNameFromMidMifFilename(buffer));
+		}
+	}
+
+	_pclose(fs);
+#endif
+}

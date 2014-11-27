@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="JavaFile"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="javac"
+			DisplayName="javac"
+			CommandLine="javac  [inputs]"
+			Outputs="$(InputName).class"
+			FileExtensions="*.javac"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

@@ -1,0 +1,8 @@
+GEOS笔记
+
+1.Overview
+	Why i begin to lean
+	BLA BLA...
+	
+	Geos提供一些几何算法的实现，而自身是开源的，遵守LGNU（Lesser General Public Licence）。
+	

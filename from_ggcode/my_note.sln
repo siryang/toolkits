@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "my_note", "notebook\my_note.vcproj", "{9D745822-0CAC-4F0F-8D8F-348CE205AAF6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "normal_test", "c++ features\project\normal_test.vcproj", "{E2C5C87E-CF9D-4EFE-9B35-BAB5BE57A143}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignPattern", "design pattern\Strategy\strategy.vcproj", "{DE57A8F4-768D-4E84-A82A-721229CE3E91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D745822-0CAC-4F0F-8D8F-348CE205AAF6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9D745822-0CAC-4F0F-8D8F-348CE205AAF6}.Debug|Win32.Build.0 = Debug|Win32
+		{9D745822-0CAC-4F0F-8D8F-348CE205AAF6}.Release|Win32.ActiveCfg = Release|Win32
+		{9D745822-0CAC-4F0F-8D8F-348CE205AAF6}.Release|Win32.Build.0 = Release|Win32
+		{E2C5C87E-CF9D-4EFE-9B35-BAB5BE57A143}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E2C5C87E-CF9D-4EFE-9B35-BAB5BE57A143}.Debug|Win32.Build.0 = Debug|Win32
+		{E2C5C87E-CF9D-4EFE-9B35-BAB5BE57A143}.Release|Win32.ActiveCfg = Release|Win32
+		{E2C5C87E-CF9D-4EFE-9B35-BAB5BE57A143}.Release|Win32.Build.0 = Release|Win32
+		{DE57A8F4-768D-4E84-A82A-721229CE3E91}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DE57A8F4-768D-4E84-A82A-721229CE3E91}.Debug|Win32.Build.0 = Debug|Win32
+		{DE57A8F4-768D-4E84-A82A-721229CE3E91}.Release|Win32.ActiveCfg = Release|Win32
+		{DE57A8F4-768D-4E84-A82A-721229CE3E91}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

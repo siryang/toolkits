@@ -1,0 +1,3 @@
+The most important difference between an expert(有经验的) software architect(建筑师、设计师) and a beginner is the knowledge of what works and what doesn't.
+
+A solution that appears to be acceptable on the whiteboard might be unusable in practice.

@@ -1,0 +1,23 @@
+1. usage of #
+#define str(o) #(o)
+
+cout << str(test);
+
+output: test
+
+2. ##
+#define glue(a,b) a ## b
+glue(c,out) << "test";
+
+glue(c, out)  == cout 
+
+3.#line
+	abort the compilation process
+4.#error
+
+5.
+	__LINE__
+	__FILE__
+	__DATE__
+	__TIME__
+	__cplusplus  : An integer value. All C++ compilers have this constant defined to some value. If the compiler is fully compliant with the C++ standard its value is equal or greater than 199711L depending on the version of the standard they comply.

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "color_picker", "color_picker.vcproj", "{9BF97B26-3FEE-4B5C-A765-D2D84B32125A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BF97B26-3FEE-4B5C-A765-D2D84B32125A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9BF97B26-3FEE-4B5C-A765-D2D84B32125A}.Debug|Win32.Build.0 = Debug|Win32
+		{9BF97B26-3FEE-4B5C-A765-D2D84B32125A}.Release|Win32.ActiveCfg = Release|Win32
+		{9BF97B26-3FEE-4B5C-A765-D2D84B32125A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,38 @@
+确定的
+
+overload 重载关键字
+
+mutable 关键字修饰的变量，可以被const修饰的函数修改。
+
+char* b = reinterpret_cast<char*>(a)
+&b会出错。
+
+创建一个放置各种适当前置声明的专用头文件(可以用stdafx.h声明整个项目中的类型)
+
+当类中函数和全局函数重名时，使用::function_name可以调用全局同名函数。
+
+《EFFECTIVE C++》条款14：确定基类有虚析构函数
+“当通过基类的指针去删除派生类的对象，而积累又没有虚析构函数时，结果将是不可确定的”。通常发生的情况是：派生类的析构函数永远不会被调用。
+
+
+
+===============
+桥接模式的一个用途
+
+//##Test.h
+class TT
+{
+	private；
+		int x, y;
+}
+###
+
+上面这个.h对应的代码编译成库后，修改Test.h文件本身，讲private-->publie就可以正常访问private变量。
+
+如果定义一个Struct Self{int x; int y};
+然后再private中使用Self*声明，则能隐藏TT中的私有变量结构。
+===============
+
+待验证的
+不要用const和volatile关键字修饰引用，但是const A&做形参，是有必要的
+

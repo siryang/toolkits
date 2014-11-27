@@ -1,0 +1,16 @@
+
+seekp(num, base)
+	ios::beg // 文件开始的位置 
+	ios::cur //当前位置，比如：ios::cur+5 
+	ios::end // 文件末尾的位置 
+
+streambuf
+	stream对应的buffer
+	ofstream  fp("output_file")
+	std::cout.rdbuf(fp.rdbuf())
+	此时，cout则写入到output_file
+
+wofstream
+	需要设置Buffer，否则写到一定字节会出错。
+	wofstream.rdbuf()->pubsetbuf(wfrtreamBuff, 128);
+

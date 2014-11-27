@@ -1,0 +1,119 @@
+======
+file test.out
+set args -threadnumber=8 // 设置执行参数
+
+==
+gdb命令集
+	肥了谁：
+	
+
+GDB问题
+	1.gdb中print不出宽字符串
+		修改 /etc/gdb/gdbinit文件
+		增加一个函数
+			## define wprint to display wide string.
+			define wp_wprint
+			echo "
+			set $c = (wchar_t*)$arg0
+			while (*$c)
+				  if (*$c > 0x7f)
+					 printf "[%x]", *$c
+				  else
+				printf "%c", *$c
+				  end
+				  set $c++
+			end
+			echo "\n
+			end
+
+			document wp_wprint
+			wp_wprint <wide_string_variable_name>
+			Display <wide_string_variable_name> which is a wchar_t* or wstring.
+			end
+
+
+
+
+
+GDB
+   bt: 查看函数堆栈
+   where：调用栈，不知道和bt什么区别。
+   frame: 和VS的Switch to frame相同，返回到调用栈中的某个状态。
+   
+   stack: 这个是什么？和原来的一样么？
+   finish:退出函数,相当于 step out
+   continue [ignore-count]:continue,并忽略后面count次breakpoint
+   
+   step <count>:往下执行count条指令，相当于step in, set step-mode [off]后会进入没有代码的函数，查看机器指令(汇编)
+   next <count>:向后执行count条指令，相当于step over
+   until:退出循环体，VS中好像木有哦。
+   si/ni:单步跟踪机器指令
+   
+   help:列出gdb命令的种类
+   help <class>：列出gbd某个种类的命令及帮助信息
+   
+   make:gdb中可以调用make来rebuild自己的程序
+   
+   set args，show args可以指定/查看设置好的运行参数
+   set environment varname[=value], show environment [varname]
+
+   cd <dir>, pwd
+
+   info
+   info program:查看程序是否在运行，进程号及程序暂停的原因
+   info breakpoints
+   info watchpoints   
+
+   break +/-offset:在当前行号后/前offset行设置断点
+   break [filename:]linenum
+   break [filename:]function
+   break *address
+
+   break ... if <condition>
+   
+   内存断点:
+   watch <expr>:当表达式值变化时，break
+   rwatch <expr>:当expr被读时，break
+   awatch <expr>:当expr被读/写时，break   
+   
+   catch <event>
+   tcatch <event>:只break一次，之后删除断点
+   
+   delete,clear,disable,enable:用于管理断点，但是delete和clear的关系呢？
+   delete breakpoint [range]
+   ignore <breakpoint num> <count> 忽略指定断点count次
+   condition <breakpoint num> [<expr>]:修改指定断点的expr
+   
+   handle <signal> <keywords>:
+       在接收到中断信号signal时暂停，
+   
+
+    <program> core
+       程序非法执行后 core dump可以生成core文件，使用 gbd <program> core可以还原
+   gdb <program> <PID> gdb会自动attach上一个进程，进行调试，一般用于调试服务
+   gdb -d 加入一个源文件搜索路径，默认时环境变量中PATH所定义的路径，但是，为什么一个我编译的test.out移动之后，gdb仍然能搜索到源码所在路径？
+   
+多线程调试
+_____________________________________________
+list
+
+_____________________________________________
+wh
+
+____________________________________________
+break
+	info break 查看断点信息
+
+____________________________________________	
+bt
+
+
+____________________________________________	
+set 
+show 
+
+path args environment varname
+
+cd pwd
+
+____________________________________________	

@@ -1,0 +1,17 @@
+SOLID原则
+	SRP	单一责任原则 The Single Responsibility Principle  
+	OCP	开放封闭原则 The Open Closed Principle  
+	LSP	里氏替换原则 The Liskov Substitution Principle	
+	DIP	依赖倒置原则 The Dependency Inversion Principle	
+	ISP	接口分离原则 The Interface Segregation Principle	
+
+单元测试
+
+开闭
+	面对扩展开放，面对修改封闭
+替换
+	一个子类能替换任何其超类的实例
+
+设计模型
+
+

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "assembly", "assembly\assembly.vcproj", "{60E3A3E7-276A-4C0D-A74B-B01C6FC7E69D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "basic", "basic\basic.vcproj", "{CAB4648F-CC15-4FAC-8733-DAE33EBD8588}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60E3A3E7-276A-4C0D-A74B-B01C6FC7E69D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{60E3A3E7-276A-4C0D-A74B-B01C6FC7E69D}.Debug|Win32.Build.0 = Debug|Win32
+		{60E3A3E7-276A-4C0D-A74B-B01C6FC7E69D}.Release|Win32.ActiveCfg = Release|Win32
+		{60E3A3E7-276A-4C0D-A74B-B01C6FC7E69D}.Release|Win32.Build.0 = Release|Win32
+		{CAB4648F-CC15-4FAC-8733-DAE33EBD8588}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CAB4648F-CC15-4FAC-8733-DAE33EBD8588}.Debug|Win32.Build.0 = Debug|Win32
+		{CAB4648F-CC15-4FAC-8733-DAE33EBD8588}.Release|Win32.ActiveCfg = Release|Win32
+		{CAB4648F-CC15-4FAC-8733-DAE33EBD8588}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1 @@
+目前应用比较广泛的游戏引擎大致有五种：CryEngine游戏引擎、Frostbite游戏引擎、Gamebryo游戏引擎、Source游戏引擎和BigWorld游戏引擎。

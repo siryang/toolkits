@@ -1,0 +1,20 @@
+内存文件系统:ramdisk、ramfs、tmpfs
+http://www.cnblogs.com/moodlxs/articles/2325075.html
+
+
+将一部分内存mount为分区来使用，通常称为ramdisk
+1.mount
+Linux 2.0/2.2已经支持，不足之处是大小固定，且固定后不能改变
+需要编译内核时，将block device中Ramdisk选中
+mkdir mount_point
+mke2fs /dev/ram0
+mount /dev/ram mount_point
+
+2.Ramfs
+可以创建多个，只要内存足够，在创建时可以指定最大内存大小
+mkdir map_point
+mount -t ramfs none map_point [-o maxsize=2000] maxsize单位为M，缺省为内存总大小的一半。
+
+
+
+3.Tmpfs

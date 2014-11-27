@@ -1,0 +1,46 @@
+1.install
+	Mongodb可以下载源码或者安装包。（安装包）
+	数据库用于编程时，需要根据编程语言下载对应的驱动。
+	编译C++驱动需要Boost(Version < 2.1.1, 1.49 is 2.1.1+) 、Scons或者vs2010
+	
+	下载boost,boost编译要先运行bootstrap.dat生成Boost编译工具bjam
+	bjam --with=<library> --toolset=msvc-9.0 编译boost的指定库
+	mongodb-driver依赖的Boost库有:
+	
+	mongodb使用scons编译，编译参数在Sconstruct文件开头，AddOption中定义
+	
+	编译scons需要设置--extrapath="boost_path"
+	
+	编译mongodb, 遇到
+	
+	
+	
+2.operator	
+	shell
+	bin/mongod -- process
+	bin/mongos -- sharding controller.
+	bin/mongo  -- the database shell.
+
+	bin/mongodump -- dump tool
+	bin/mongorestore -- restore a dump
+	bin/mongoimport -- import from json or csv
+	bin/mongofiles -- utility for putting and getting files from mongodb gridfs
+	bin/mongostat -- show performance statistics.
+	
+3.run
+	./mongod --logpath ../logs/mon.log --dbpath /mapbar/data/mongodb/mgisx/db --maxConns 1000 --bind_ip 192.168.0.176 --port 27018 --fork --nohttpinterface
+	
+	检查Port有没有被占用，netstat -antlp|grep 27018
+	
+	
+	
+	
+	
+Driver: http://api.mongodb.org/c/current/building.html 
+http://docs.mongodb.org/ecosystem/tutorial/getting-started-with-cpp-driver/
+Build with VS2010: http://www.mongodb.org/about/tutorial/build-mongodb-with-visual-studio-2010/
+
+
+Tutorial:
+http://www.cnblogs.com/logicbaby/archive/2011/07/04/2097697.html
+http://www.v2ex.com/t/47431

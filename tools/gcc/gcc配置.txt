@@ -1,0 +1,8 @@
+编译GCC后，机器中存在两个版本的GCC，修改/etc/profile文件以选择新编译出来的gcc
+
+export GCC46_HOME=/usr/local/gcc-4.6.1
+export CPLUS_INCLUDE_PATH=$GCC46_HOME/include:$GCC46_HOME/include/c++/4.6.1
+export LIBRARY_PATH=/usr/local/gmp-5.0.2/lib:/usr/local/mpfr-3.0.1/lib:/usr/local/mpc-0.9/lib:$GCC46_HOME/lib64:$GCC46_HOME/lib:$GCC46_HOME/lib/gcc/x86_64-unknown-linux-gnu/4.6.1
+export LD_LIBRARY_PATH=/usr/local/gmp-5.0.2/lib:/usr/local/mpfr-3.0.1/lib:/usr/local/mpc-0.9/lib:$GCC46_HOME/lib64:$GCC46_HOME/lib:$GCC46_HOME/lib/gcc/x86_64-unknown-linux-gnu/4.6.1
+
+export PATH=$GCC46_HOME/bin:$PATH

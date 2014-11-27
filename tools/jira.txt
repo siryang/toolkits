@@ -1,0 +1,14 @@
+affectedVersion  影响版本
+assignee	代理人，分配到任务的人---开发人员
+Birthday 	发布日期
+BUG类型	
+category部门
+comment	
+component	
+created
+createdData
+description
+due
+duedata
+Education
+Email

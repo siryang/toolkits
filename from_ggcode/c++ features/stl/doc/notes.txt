@@ -1,0 +1,6 @@
+vector<int> m;
+vector<int>::iterator itM = m.begin();
+m.erase(itM--); // 这句会Crash
+====================================
+
+m.earse(itM);之后，itM指向的是原来的下一个元素。如果再用itM++，会指向下一个的下一个

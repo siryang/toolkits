@@ -1,0 +1,16 @@
+
+	int stampBase = rand();
+	for (i;;)
+		{
+		int stamp = (stampBase + i) * 142169;
+		stamp = abs(stamp);
+		opt.lineS.x = stamp % 1000;
+		opt.lineS.y = (stamp / 1000) % 1000;
+
+		
+		opt.lineE.x = (stamp >> 7) % 1000;
+		opt.lineE.y = (stamp >> 3) % 1000;
+		
+		opt.grabPos.x = (stamp * 701)  % 1000;
+		opt.grabPos.y = (stamp * 17) % 1000;
+	}

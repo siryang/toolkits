@@ -1,0 +1,63 @@
+
+
+1.如何改变命令行前面的 username@pc:/opt/apache-tomcat-7.0.37/bin/commons-daemon-1.0.13-native-src$ 
+	改成 [username@jishu-tset-192-168-0-162 bin]$  ?
+
+	修改/etc/bashrc
+	调用source /etc/bashrc或者. /etc/bashrc 使配置生效
+
+	尝试过修改/etc/profile不行
+
+	设置PS1变量：
+	\d ：可显示出『星期 月 日』的日期格式，如："Mon Feb 2"
+	\H ：完整的主机名。举例来说，鸟哥的练习机为『www.vbird.tsai』
+	\h ：仅取主机名在第一个小数点之前的名字，如鸟哥主机则为『www』后面省略
+	\t ：显示时间，为 24 小时格式的『HH:MM:SS』
+	\T ：显示时间，为 12 小时格式的『HH:MM:SS』
+	\A ：显示时间，为 24 小时格式的『HH:MM』
+	\@ ：显示时间，为 12 小时格式的『am/pm』样式
+	\u ：目前使用者的账号名称，如『root』；
+	\v ：BASH 的版本信息，如鸟哥的测试主板本为 3.2.25(1)，仅取『3.2』显示
+	\w ：完整的工作目录名称，由根目录写起的目录名称。但家目录会以 ~ 取代；
+	\W ：利用 basename 函数取得工作目录名称，所以仅会列出最后一个目录名。
+	\# ：下达的第几个指令
+	\$ ：提示字符，如果是 root 时，提示字符为 # ，否则就是 $
+	
+	例子：PS1='[\u@\h \w \W \A #\#]\$'
+	
+2.
+	1.查询系统的内核信息：
+	 uname -a
+	2.6.9-78.ELsmp #1 SMP Fri Jul 25 00:04:28 EDT 2008 i686 i686 i386 GNU/Linux
+	2.查询linux 的版本信息：
+	 lsb_release -a
+	LSB Version:    :core-3.0-ia32:core-3.0-noarch:graphics-3.0-ia32:graphics-3.0-noarch
+	Distributor ID: CentOS
+	Description:    CentOS release 4.7 (Final)
+	Release:        4.7
+	Codename:       Final
+	以下信息在dmidecode 命令查询到
+	3.查询linux 的主板型号
+	 dmidecode |grep "Product Name"
+	 dmidecode |grep "Manufacturer"
+	4.查询内存型号
+	 cat /proc/meminfo
+	dmidecode |grep "Memory Module Information"
+	dmidecode |grep "Memory Controller Information"
+	5.查询硬盘型号和类型等
+	 cat /proc/scsi/scsi
+	6.查询cpu 型号信息
+	cat /proc/cpuinfo
+	 dmidecode |grep "Processor Information"
+	7.查询网卡型号信息
+	 ethtool -v
+	dmesg | grep -i eth
+	kudzu --probe --class=network
+	
+3. Linux常用系统文件的用途
+
+4. 时间
+	查询系统时间 date
+	日历 cal
+	
+	

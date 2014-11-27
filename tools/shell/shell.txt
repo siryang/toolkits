@@ -1,0 +1,69 @@
+wc: 统计文本文件行数、字符数、单词数...
+
+sudo lsof -i:8080   查看8080端口是否被占用
+
+top:
+	-p pid1,pid2,pid3 只查看指定进程的信息
+
+sort:
+	ll | sort -nk 5  ll后按照文件大小进行排序
+	-g和-n的区别没搞明白
+
+unpack:
+	tgz: gunzip =c {*.tgz} | tar -xvf
+
+查看Port有没有被占用
+	netstat -antlp|grep 27018
+
+find .  -regextype posix-egrep -mindepth 1 ! -regex ‘./(dev|tmp)($|/.*)’ ! -name Makefile -a ! -name .svn | cpio -admvp /home/dir2
+
+bc计算器
+scale = n // 显示到小数点后n位
+ibase = n // 输入的数字是n进制
+obase = n // 输出的数字是n进制
+
+cmd 1>1.txt 2>2.txt // 重定向输出
+source /etc/profile //使profile文件修改后立即生效
+======================================
+Linux mount 远程文件夹
+1.在源服务器端启动nfs和portmap服务
+service nfs start
+service portmap start
+通过ntsysv，把nfs和portmap服务加到自启动服务中
+ 
+2. 使用root账户，在源服务器编辑配置文件/etc/exports
+插入如下内容：
+/home/work/the_dir_you_want_to_mount  10.20.151.25(rw,no_root_squash)
+含义分别代表：你想让别的机器共享的文件夹，你允许那台机器来共享（可以用ip，域名，域名通配符），括号中为mount的选项。
+3. 保存后，执行如下命令，重起nfs服务
+service nfs restart
+或者不重启，root下
+exports –rv        全部重新export一次
+即可
+
+4.在客户端启动portmap服务
+service portmap start
+5.在客户端mount远程文件夹
+mkdir /data
+mount -t nfs 10.20.151.25:/home/work/the_dir_you_want_to_mount  /data
+权限问题：mount后可能会存在权限上无法访问的问题，这个貌似是可以通过修改源服务器上的文件属性，或者通过/etc/exports 后面括号中的属性来更改。
+
+6.脱离终端执行命令
+nohup {shell} &
+======================================
+
+yum
+配置文件在/etc文件夹中：http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html
+yum.config
+yum.repos.d/*
+	保存更新镜像 https://lug.ustc.edu.cn/wiki/mirrors/help/centos
+======================================
+
+
+./configure --prefix=/usr/local/gcc-4.9.0 --enable-threads=posix --disable-checking --disable-multilib --enable-languages=c,c++ --with-gmp=/usr/local/gmp-4.3.20 --with-mpfr=/usr/local/mpfr-2.4.2 --with-mpc=/usr/local/mpc-0.8.1
+
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/gmp-4.3.2/lib:/usr/local/mpfr-2.4.2/lib:/usr/local/mpc-0.8.1/lib/
+echo $LD_LIBRARY_PATH
+
+

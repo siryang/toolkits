@@ -1,0 +1,75 @@
+A：emacs使用root权限打开文件
+	C-x C-f /sudo::<filename>
+	
+1.如何给EMACS的几行信息，每行开头都增加一个字符。(行编辑)
+
+2.Emacs打开的文件被其他程序修改后，并不会自动更新BUFFER，如何让其更新
+
+3.auto-complete和cedet的关系
+   
+4.Emacs如何放大当前视图
+  C-X然后按着C使用+ - 调节，按0可以回到初始大小
+
+5.如何撤销之前的撤销，就想其它编辑器中的C-Y
+
+6.Emacs中使用版本控制
+
+7.Emacs中设置、收取邮件
+
+8.Emacs中翻译
+
+9.如何给鼠标绑定快捷键
+"<mouse-1>" 左键
+"<mouse-2>" 中键
+"<down/move-mouse-n>"
+
+10. Windows下M-G G有问题，需要输入两次行号
+
+11. 目前还不清楚如何复制整行，一直用的是移到开头用C-K+C-Y
+
+12. Emacs打开远程文件
+     /host:filename
+     /user@host:filename
+     /user@host#port:filename
+     /method:user@host:filename
+     /method:user@host#port:filename
+method可以是：ftp,ssh,rlogin,telnet等可以远程登录的程序，其缺省的是
+
+如果主机名称以"ftp."开始，那就用ftp
+如果用户名称是ftp或者anonymous，那也用ftp
+其余的缺省是ssh
+
+13. 如何查看Emacs帮助
+C-H K + 某个按键 可以知道此按键对应的功能。
+
+14.常用编辑设置
+	修改Tab Size : (setq tab-width 8)
+	
+// color theme you want, 1. billw 85 2.classic 85 3.lethe 90 4.Renegade 70 5.Taylor 85 6.
+
+15.DIFF MODE
+M-x diff进入diff对话框，输入两个文件路径，会比较文件并在*diff*中打开
+M-n和M-p分别是上一条、下一条记录
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

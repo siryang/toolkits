@@ -1,0 +1,412 @@
+;; .emacs
+
+;;; uncomment this line to disable loading of "default.el" at startup
+;; (setq inhibit-default-init t)
+
+;; turn on font-lock mode
+(when (fboundp 'global-font-lock-mode)
+  (global-font-lock-mode t))
+
+;; enable visual feedback on selections
+;(setq transient-mark-mode t)
+
+;; default to better frame titles
+(setq frame-title-format
+      (concat  "%b - emacs@" (system-name)))
+
+;; default to unified diffs
+(setq diff-switches "-u")
+
+;; always end a file with a newline
+;(setq require-final-newline 'query)
+
+
+;; window size
+(setq default-frame-alist (append (list '(width        . 100)
+                                        '(height       . 40))
+                                  default-frame-alist))
+
+
+;; モードラインに行番号、カラム番号を表示する
+(line-number-mode t)
+(column-number-mode t)
+
+;; モードラインに時間を表示する
+(if (or (and (>= emacs-major-version 20)
+             (not (equal (getenv "LANG") "ja_JP.UTF-8")))
+        (>= emacs-major-version 22))
+    (progn
+      (setq dayname-j-alist
+           '(("Sun" . "日") ("Mon" . "月") ("Tue" . "火") ("Wed" . "水")
+             ("Thu" . "木") ("Fri" . "金") ("Sat" . "土")))
+      (setq display-time-string-forms
+;           '((format "%s年%s月%s日(%s) %s:%s %s"
+;                     year month day
+;                     (cdr (assoc dayname dayname-j-alist))
+;                     24-hours minutes
+;		     load)))
+           '((format "%s年%s月%s日(%s)"
+                     year month day
+                     (cdr (assoc dayname dayname-j-alist)))))))
+(display-time)
+
+;; スクロールバーを右側に表示する
+(set-scroll-bar-mode 'right)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Japanese font setting 6x13 + VL Gothic
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;(add-to-list 'default-frame-alist '(font . "6x13"))
+;
+;(cond
+; (window-system  
+;  (set-default-font "6x13")  
+;  (set-fontset-font  
+;   (frame-parameter nil 'font)  
+;   'japanese-jisx0208  
+;   '("VL Gothic" . "unicode-bmp"))
+;  )
+; )
+
+;; VL Gothic-12
+;(if (and (eq window-system 'x) (>= emacs-major-version 23))
+;    (progn
+;      (set-default-font "VL Gothic-12")
+;	  (set-fontset-font (frame-parameter nil 'font)
+;						'japanese-jisx0208
+;						'("M+1VM+IPAG circle-12" . "unicode-bmp"))
+;	  (set-fontset-font (frame-parameter nil 'font)
+;						'katakana-jisx0201
+;						'("M+1VM+IPAG circle-12" . "unicode-bmp"))
+;	  (set-fontset-font (frame-parameter nil 'font)
+;						'ascii
+;						'("M+1VM+IPAG circle-12" . "unicode-bmp"))
+;	  (set-fontset-font (frame-parameter nil 'font)
+;						'unicode
+;						'("M+1VM+IPAG circle-12" . "unicode-bmp"))
+;	  ))
+
+(if (and (eq window-system 'x) (>= emacs-major-version 23))
+    (progn
+      (set-default-font "VL Gothic-10")
+	  (set-fontset-font (frame-parameter nil 'font)
+						'japanese-jisx0208
+						'("M+1VM+IPAG circle-10" . "unicode-bmp"))
+	  (set-fontset-font (frame-parameter nil 'font)
+						'katakana-jisx0201
+						'("M+1VM+IPAG circle-10" . "unicode-bmp"))
+	  (set-fontset-font (frame-parameter nil 'font)
+						'ascii
+						'("M+1VM+IPAG circle-10" . "unicode-bmp"))
+	  (set-fontset-font (frame-parameter nil 'font)
+						'unicode
+						'("M+1VM+IPAG circle-10" . "unicode-bmp"))
+	  ))
+
+
+
+
+;; sample .emacs
+;; add ~/elisp to Lisp library load path
+(setq load-path (cons (expand-file-name "~/elisp")
+		      load-path))
+
+
+;; COLOR-THEME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Settings for using color themes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Add themes directory
+;;(add-to-list 'load-path
+;;			 "~/elisp/themes")
+;; Load color-themes
+;;(require 'color-theme)
+;; Init color-themes
+;;;;(color-theme-initialize)
+;; Choose Hober
+;;(color-theme-hober)
+;;;;(color-theme-robin-hood)
+
+
+
+;; ecb
+;;(require 'cedet)
+;;(require 'ecb)
+
+
+;; enable auto-fill-mode when Text mode
+(setq text-mode-hook
+      '(lambda () (auto-fill-mode 1)))
+
+
+;; xchange BS (C-h) key and DEL key
+;;(load-library "term/bobcat")
+
+
+;; start with c-mode by default
+;;(setq default-major-mode 'c-mode)
+
+;; redefine the C-x C-u keystroke to undo, just as C-x u
+;; rather than do the upcase-region command
+(define-key global-map "\C-x\C-u" 'undo)
+
+
+;; for cc-mode
+;; indent-stype
+(setq c-default-style "stroustrup"
+      c-basic-offset 4)
+
+
+;; Space Only
+(setq-default indent-tabs-mode nil)
+
+
+;; Tab width for display
+;; use M-x set-variable tab-width 4 to change in buffer
+(setq default-tab-width 4)
+(setq tab-stop-list ())
+
+;; no duplicated buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward )
+
+;; Following setup is for the ifdef 0 highlight
+(defun my-cpp-highlight ()
+  (setq cpp-known-face '(background-color . "blue"))
+  (setq cpp-unknown-face 'default)
+  (setq cpp-face-type 'dark)
+  (setq cpp-known-writable 't)
+  (setq cpp-unknown-writable 't)
+  (setq cpp-edit-list
+        '((#("0" 0 1
+             (c-in-sws t fontified t))
+           (background-color . "blue")
+           nil both nil)
+          (#("1" 0 1
+             (c-in-sws t fontified t))
+           nil
+           (background-color . "blue")
+           both nil)))
+  (cpp-highlight-buffer t))
+
+;; Add hook
+(defun my-c-mode-common-hook ()
+  (my-cpp-highlight)
+  )
+
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;; C-l manully refresh
+(defun my-c-mode-recenter ()
+  "Recenter buffer and refresh highlighting."
+  (interactive)
+  (recenter)
+  (cpp-highlight-buffer t))
+
+(defun my-c-initialization-hook ()
+  (define-key c-mode-base-map "\C-l" 'my-c-mode-recenter))
+
+(add-hook 'c-initialization-hook 'my-c-initialization-hook)
+
+
+;; Doyxgen+Emacs (thus doymacs)
+(require 'doxymacs)
+;;- Invoke doxymacs-mode with M-x doxymacs-mode. To have doxymacs-mode invoked
+;;  automatically when in C/C++ mode, put
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
+;;- If you want Doxygen keywords fontified use M-x doxymacs-font-lock.
+;;  To do it automatically, add the following to your .emacs:
+(defun my-doxymacs-font-lock-hook ()
+  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+      (doxymacs-font-lock)))
+(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+;;  This will add the Doxygen keywords to c-mode and c++-mode only.
+;;
+;; - Default key bindings are:
+;;   - C-c d ? will look up documentation for the symbol under the point.
+;;   - C-c d r will rescan your Doxygen tags file.
+;;   - C-c d f will insert a Doxygen comment for the next function.
+;;   - C-c d i will insert a Doxygen comment for the current file.
+;;   - C-c d ; will insert a Doxygen comment for the current member.
+;;   - C-c d m will insert a blank multi-line Doxygen comment.
+;;   - C-c d s will insert a blank single-line Doxygen comment.
+;;   - C-c d @ will insert grouping comments around the current region.
+
+
+;; translate  " // xxxx " to " /**< xxxx */ " format
+;;(fset 'doxymember
+;;      "\C-[xquery-replace-regexp\C-m//\\(.*\\)\C-m/**<\\1 */\C-m.")
+
+;; translate  " // xxxx " to " ///< xxxx " format
+;;(fset 'doxyglobalvardef
+;;      "\C-[xquery-replace-regexp\C-m//\C-m///<\C-m.")
+
+(fset 'paul-add-brief
+      "@brief  <b></b>\C-u4\C-b")
+
+(fset 'paul-modi-param-in
+      "\C-a\C-[xquery-replace\C-m@param\C-m@param[in]\C-m.\C-e")
+(fset 'paul-modi-param-out
+      "\C-a\C-[xquery-replace\C-m@param\C-m@param[out]\C-m.\C-e")
+(fset 'paul-modi-param-in-out
+      "\C-a\C-[xquery-replace\C-m@param\C-m@param[in,out]\C-m.\C-e")
+
+
+;; reload !
+(fset 'refreshme
+      "\C-[xrevert-buf\C-i\C-myes\C-m")
+
+
+;; convert endian (big -> little)
+;;(fset 'big_to_little_ulong
+;;   "\C-a\C-[xquery-replace-regexp\C-m\\([ \C-q\C-i]*\\)\\([u_]*\\)\\([ls]\\)\\([onghrt]*\\)\\([ \C-q\C-i]*\\)\\(.*\\);\\(.*\\)\C-m\\1little->\\6 = ntoh\\3(big->\\6);\\7\C-my")
+;;(global-set-key (kbd "\C-cf") 'big_to_little_ulong)
+
+
+;;(define-key global-map "\C-x\C-u" 'undo)
+
+
+
+;; my shortcuts
+
+(global-set-key [f5] 'refreshme)
+(global-set-key [f6] 'goto-line)
+;;(global-set-key [f7] 'replace-string)
+;;(global-set-key [f8] 'query-replace)
+;;(global-set-key [f7] 'doxymember)
+;;(global-set-key [f8] 'doxyglobalvardef)
+(global-set-key [f9] 'paul-add-brief)
+(global-set-key [f10] 'paul-modi-param-in)
+(global-set-key [f11] 'paul-modi-param-out)
+(global-set-key [f12] 'paul-modi-param-in-out)
+;;(global-set-key [f8] 'big_to_little_ulong)
+;;(global-set-key [f9] 'sort-lines)
+;;(global-set-key [f10] 'indent-region)
+;;(global-set-key [f11] 'goto-line)
+;;(global-set-key [f11] 'addfree1)
+;;(global-set-key [f12] 'addfree2)
+
+
+;;(set-face-background 'trailing-whitespace "blue")
+
+;; Build-in-CEDET
+;;
+;; minor modes for semantic-default-submodes
+;;
+;; well, the default
+;;    * global-semantic-idle-scheduler-mode
+;;    * global-semanticdb-minor-mode
+;; and all availables
+;;    * global-semanticdb-minor-mode
+;;    * global-semantic-idle-scheduler-mode
+;;    * global-semantic-idle-summary-mode
+;;    * global-semantic-idle-completions-mode
+;;    * global-semantic-decoration-mode
+;;    * global-semantic-highlight-func-mode
+;;    * global-semantic-stickyfunc-mode
+;;    * global-semantic-mru-bookmark-mode
+
+(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+                                  global-semanticdb-minor-mode
+                                  global-semantic-idle-summary-mode
+                                  global-semantic-mru-bookmark-mode))
+(semantic-mode 1)
+(global-semantic-highlight-edits-mode (if window-system 1 -1))
+(global-semantic-show-unmatched-syntax-mode 1)
+(global-semantic-show-parser-state-mode 1)
+
+;;(defconst user-include-dirs
+;;  (list ".." "../include" "../inc" "../common" "../public"
+;;        "../.." "../../include" "../../inc" "../../common" "../../public"))
+;;(defconst win32-include-dirs
+;;  (list "C:/MinGW/include"
+;;        "C:/MinGW/include/c++/3.4.5"
+;;        "C:/MinGW/include/c++/3.4.5/mingw32"
+;;        "C:/MinGW/include/c++/3.4.5/backward"
+;;        "C:/MinGW/lib/gcc/mingw32/3.4.5/include"
+;;        "C:/Program Files/Microsoft Visual Studio/VC98/MFC/Include"))
+;;(require 'semantic-c nil 'noerror)      ;; important
+;;(let ((include-dirs user-include-dirs))
+;;  (when (eq system-type 'windows-nt)
+;;    (setq include-dirs (append include-dirs win32-include-dirs)))
+;;  (mapc (lambda (dir)
+;;          (semantic-add-system-include dir 'c++-mode)
+;;          (semantic-add-system-include dir 'c-mode))
+;;        include-dirs))
+
+(require 'semantic-c nil 'noerror)      ;; important
+;;(semantic-add-system-include "/usr/include/gtk-2.0" 'c-mode)
+(semantic-add-system-include "/usr/include/gtk-2.0" 'c-mode)
+(semantic-add-system-include "/usr/include/gtk-2.0" 'c++-mode)
+
+(defadvice push-mark (around semantic-mru-bookmark activate)
+  "Push a mark at LOCATION with NOMSG and ACTIVATE passed to `push-mark'.
+If `semantic-mru-bookmark-mode' is active, also push a tag onto
+the mru bookmark stack."
+  (semantic-mrub-push semantic-mru-bookmark-ring
+                      (point)
+                      'mark)
+  ad-do-it)
+
+(defun semantic-ia-fast-jump-back ()
+  (interactive)
+  (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
+      (error "Semantic Bookmark ring is currently empty"))
+  (let* ((ring (oref semantic-mru-bookmark-ring ring))
+         (alist (semantic-mrub-ring-to-assoc-list ring))
+         (first (cdr (car alist))))
+    (if (semantic-equivalent-tag-p (oref first tag) (semantic-current-tag))
+        (setq first (cdr (car (cdr alist)))))
+    (semantic-mrub-switch-tags first)))
+(defun semantic-ia-fast-jump-or-back (&optional back)
+  (interactive "P")
+  (if back
+      (semantic-ia-fast-jump-back)
+    (semantic-ia-fast-jump (point))))
+;;(define-key semantic-mode-map [f12] 'semantic-ia-fast-jump-or-back)
+;;(define-key semantic-mode-map [C-f12] 'semantic-ia-fast-jump-or-back)
+;;(define-key semantic-mode-map [S-f12] 'semantic-ia-fast-jump-back)
+;;(define-key semantic-mode-map [M-S-f12] 'semantic-analyze-proto-impl-toggle)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; auto-complete (official settings)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/elisp/auto-complete")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/elisp/auto-complete/ac-dict")
+(ac-config-default)
+
+
+;;;; PO2010_0024 2010/11/01
+;;(fset 'add_ushort_ptr_type
+;;   "\C-a\C-s&\C-b(u_short *)")
+;;(fset 'add_ulong_ptr_type
+;;   "\C-a\C-s&\C-b(u_long *)")
+;;(global-set-key [f12] 'add_ushort_ptr_type)
+;;(global-set-key [f9] 'add_ulong_ptr_type)
+
+(fset 'paul_awk_print_line
+      "\C-[xquery-re\C-i-re\C-i\C-m\\(.*\\)\C-ms=sprintf(\"\\1\"); print s;\C-m")
+
+
+
+
+
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+
+(fset 'doxy-param-pavs-style-to-new
+   [escape ?\C-s ?@ ?p ?a ?r ?a ?m ?. ?. ?* ?\\ ?\[ ?\C-m ?\C-a ?\C-s ?\[ ?\C-m ?\C-b ?\S-\C-  ?\C-s ?\] ?\C-m ?\C-w ?\C-a ?\C-s ?p ?a ?r ?a ?m ?\C-m ?\C-y escape ?b escape ?l])
+(put 'upcase-region 'disabled nil)

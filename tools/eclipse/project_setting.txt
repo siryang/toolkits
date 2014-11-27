@@ -1,0 +1,9 @@
+1.Windows --> Preferences
+	Build Path: specify default build path.
+	Class Variables: classpath variable.
+	Code Style: 
+	Editor-->Content Assist-->Auto Activation:
+			自动补全，修改triggers for java 为 abcdefghijklmnopqrstuvwxyz.
+	
+2.Project-->Properties
+	

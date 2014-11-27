@@ -1,0 +1,17 @@
+
+1.export MALLOC_TRACE="my_log_file_name.log"
+2.#include <mcheck.h>
+3.add 
+	mtrace();
+	...code...
+	muntrace();
+4. ./a.out
+5. mtrace a.out $MALLOC_TRACE
+
+complete.
+
+
+	
+
+
+

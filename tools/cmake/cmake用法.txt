@@ -1,0 +1,160 @@
+cmake
+
+
+CMakeList.txt语法
+1.set (key value)
+#设置变量
+
+2.
+
+
+
+1. out-of-source build
+   in-source build
+
+2. add_subdirectory
+
+3. #
+
+4. set  (Key, value)
+   $(key)
+
+5. include_directories
+   
+
+6. add_executable
+
+7. cmake_minimum_required
+
+8. if (key) ...
+   else ()/elseif ()...
+   endif (key)
+===
+   set(var, a b c)
+   foreach (f ${var})
+   	   ...
+   endforeach(f)
+===
+   while()
+   ...
+   endwhile
+
+9. command(args...)
+   command format in cmake.
+
+10. 
+	CMAKE_C_COMPILER
+	CMAKE_CXX_COMPILER
+	CMAKE_C_FLAGS
+
+	EXECUTABLE_OUTPUT_PATH
+	LIBRARY_OUTPOUT_PATH
+
+	CMAKE_BUILD_TYPE=<Debug|Release>
+	BUILD_SHARED_LIBS #make share libraries
+
+
+11.
+
+project("project name")
+
+include_directories() #like -I
+
+link_directories      #like -L
+
+add_subdirectory
+add_executable
+
+add_defintions	#like -DXXX for example: "-DLINUX -g"
+example:
+#A:add_defintions(-DLINUX)
+#B:add_defintions(-fPIC)
+
+target_link_libraries #like  -l  
+link_libraries #link library to every target
+
+add_library #make static library
+example:
+#A:add_library(navi_online STATIC ${FILE_LIST})
+#B:add_library(navi_online SHARED ${FILE_LIST})
+
+add_custom_target
+
+message();
+example:
+#message(STATUS|SEND_ERROR|FATAL_ERROR "message")
+#must use upper character and must use space.
+
+set_target_properties
+
+
+#list fill to variable
+aux_source_directory(<dir> <variable>)
+目前发现aux_source_directory只能列出当前文件夹中的.c/.cpp不能识别出.java文件，识别方法需要再搜
+可以用file(GLOBAL SRC_FILE path/*.java)将文件列表放到SRC_FILE中。
+
+
+#then
+add_executable(target ${variable})
+
+
+#debug and release
+if (DEBUG_MODE)
+   add_defintaions(-DDEBUG)
+endif(DEBUG_MODE)
+#when compile use "cmake -D DEBUG_MODE=ON
+
+
+option (DEBUG_MODE "ON/Off)
+if ...
+endif ...
+#then get makefile by cmake
+#use make edit_cache modify it.
+#emacs not support make edit_cache
+
+# depend releationship of project.
+add_dependencies
+
+可以不在子目录中使用CMakeList.txt，直接在上层目录中指定子目录
+
+
+TBD?
+
+1.how to list files in directory?
+	use aux_source_directory(<dir> <variable>)
+2.how to get option in running cmake.?
+	try cmake -i
+	使用cmke -i 后，所有的系统、自定义宏都会询问。如何只询问自动以option。如何对Option设置等级?
+
+4.test command of FILE
+
+
+
+
+CMakeCache.txt
+save system macro and user macro 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+http://www.ibm.com/developerworks/cn/linux/l-cn-scons/
+http://blog.csdn.net/zhiyu520/article/details/2292294
+
+
+
+
+install scons
+1.SourceForge上下载
+2.执行python setup.py install编译	
+3.写Sconstruct文件
+4.soncs编译，scons -c 清理
+
+
+Sconstruct
+	AddOption: add option of scons.
+	CCFLAGS : compile flags.
+	CPPPATH : extra include search path.
+	LIBPATH : extra library search path.
+	CPPDEFINES : pre-definitions
+	
+	Program： 编译成可执行程序（在 Windows 平台上即是 exe 文件），这是最常用的一种编译类型。
+	Object： 只编译成目标文件。使用这种类型，编译结束后，只会产生目标文件。在 POSIX 系统中，目标文件以 .o 结尾，在 Windows 平台上以 .OBJ 结尾。
+	Library： 编译成库文件。SCons 默认编译的库是指静态链接库。
+	StaticLibrary： 显示的编译成静态链接库，与上面的 Library 效果一样。
+	SharedLibrary： 在 POSIX 系统上编译动态链接库，在 Windows 平台上编译 DLL。
+	

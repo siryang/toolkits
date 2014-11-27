@@ -1,0 +1,58 @@
+VSPD : 嵌入式设备中模拟串口输入的工具
+
+常用命令
+
+ln 已存在目录 链接位置
+ln -s 软链接
+ln 硬链接
+	硬链接不许跨设备，不许普通用户链接目录
+	
+
+ldd
+	可以查看程序、库的链接信息。
+	-d 可以查看库缺少哪些Symbol。
+nm
+	用于列出目标文件的符号清单
+file
+	确定文件类型
+readelf
+	用来显示ELF格式目标文件的信息
+
+as	汇编器
+ld	连接器
+gprof	性能分析工具程序
+addr2line	从目标文件的虚拟地址取得文件的行号或符号
+ar	可以对静态库做创建、修改和取出的操作。
+c++filt	解码 C++ 的符号
+dlltool	创建Windows 动态库
+gold	另一种连接器
+nlmconv	可以转换成NetWare Loadable Module目标文件格式
+nm	显示目标文件内的符号
+objcopy	复制目标文件，过程中可以修改
+objdump	显示目标文件的相关信息，亦可反汇编
+ranlib	产生静态库的索引
+size	列出总体和section的大小
+strings	列出任何二进制档内的可显示字符串
+strip	从目标文件中移除符号
+windmc	产生Windows信息资源
+windres	Windows 资源档编译器
+
+------------------------
+查看二进制文件
+hexdump 
+
+1.vim -b filename
+2.:%!xxd
+
+------------------------
+几个好玩的命令
+yes
+cowsay
+==============================================================
+其它工具
+valgrind
+	应用程序检查工具
+ccache
+	用ccache加速你的gcc/g++编译
+	http://www.oschina.net/question/12_5805
+ccache-swig 为什么要多个swig，而且swig是c/c++和其它语言混用的工具。

@@ -1,0 +1,20 @@
+valgrind --tool=<toolname>
+				must
+				
+toolname:
+	Memcheck
+	Cachegrind
+
+valgrind --leak-check=<full|yes|> --show-reachable=yes 
+
+--trace-children=<yes|no> [default: no]
+	for multi-process programs
+
+--trace-children-skip=patt1,patt2,...
+	skip some children
+	
+--vgdb
+
+
+	
+	

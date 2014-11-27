@@ -1,0 +1,10 @@
+1.MySQL c driver for windows.
+	Driver中有posix pthread中部分函数的实现，所以在windows下如果也用了pthradVC2.lib会冲突
+	解决办法是用010Editor把Driver中的pthread都改名，不过_my_pthread_once 这个函数是mysql.lib独有的，所以不改名
+
+2.
+mysql_server_init()   应在调用任何其他MySQL函数之前调用，最好是在main()函数中调用。
+mysql_server_end() 应在程序退出前调用。
+mysql_thread_init() 应在你所创建的、用于访问MySQL的每个线程中调用。
+mysql_thread_end() 应在调用pthread_exit()之前调用。
+

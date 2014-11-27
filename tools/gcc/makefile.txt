@@ -1,0 +1,63 @@
+-I<dir>和-<dir>
+dir前面加“-”(减号)，是将此dir设置为不搜索目录。
+======
+make -f Makefile, use -f to select Makefile.
+===
+make会自动编译makefile指定的第一个目标文件。一般都喜欢将第一个目标文件命名为all。
+
+===
+.PHONY: all
+all:xxx
+	xxx
+声明all是个伪目标文件。
+
+===
+当某个.o没有指定规则时，会默认找对应同名.c或者.cpp 编译<隐晦规则>
+
+===
+makefile中使用include/-include
+make运行时使用"-I path"可以在path目录和path/include中找makefile中Include的文件
+
+MAKEFILES变量, 当此变量定义时，所有的make都会自动include MAKEFILES的内容
+
+===
+makefile自动变量 http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html#Automatic-Variables
+1. ^ 所有依赖文件
+2. @ 目标文件,当有多个目标文件时，$@为触发此语句执行的目标文件的名称。
+3. < 依赖文件的第一个文件
+4. % 
+5. ? 所有比目标文件新的文件。
+6. + 和^相同，但是依赖文件可以被多次列出，主要用于链接时，需要某些库被多次列出的情况
+7. | 
+
+====
+makefile 变量赋值
+= 和 :=的区别  http://www.gnu.org/software/make/manual/html_node/Flavors.html#Flavors
+?= 如果没有定义,则定义这个变量并赋值
+
+=======
+关键字
+
+VPATH，设置源码和.o搜索路径
+vpath <pattern> <directories> 为pattern指定搜索目录
+vpath <pattern> 清空pattern的搜索目录
+vpath  清空所有文件搜索目录
+$(addprefix A,B)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

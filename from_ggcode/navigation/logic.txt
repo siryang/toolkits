@@ -1,0 +1,7 @@
+Logic±Ê¼Ç:
+	background_routre.c : 
+		buildUrl
+	online_route_private.c : 
+		OnlineRoute_parseJson
+		
+	

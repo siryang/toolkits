@@ -1,0 +1,23 @@
+
+typedef char int24[3]<read=int24Read, write=int24Write>;
+
+string int24Read(int24 data)
+{
+    string m;
+    int temp = (data[0] & 0xff) + ((data[1] & 0xff) << 8) + ((data[2] & 0xff) << 16);
+    SPrintf(m, "(0x%xh)", temp);
+    return m;
+}
+
+void int24Write(int24 &data, string s)
+{
+    int temp = 0;
+    SScanf( s, "(%d)", temp);
+  
+    data[0] = temp >> 16 & 0xFF;   
+    data[1] = temp >> 8 & 0xFF;
+    data[3] = temp & 0xFF;
+}
+
+int24 p;
+

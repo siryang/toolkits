@@ -1,0 +1,33 @@
+
+开源GIS软件，http://www.cnblogs.com/sunliming/archive/2010/10/02/1841261.html
+
+a) Geos
+	Geos的全称就是Geometry Engine Open Source，参考网站就是：http://geos.refractions.net，从名称就可以看出，Geos就是判断几何体的过程。
+	Geos是用C++语言写的处理计算几何的开源库。
+
+b) CGAL
+	CGAL的全称就是Computational Geometry Algorithms Library，参考网站就是：http://www.cgal.org ，从名称就可以看出，CGAL就是计算几何的开源库。
+	CGAL是用C++语言写的计算几何最经典的开源库，
+
+c) LEDA
+	LEDA的全称就是Library of Efficient Data types and Algorithms，参考网站就是：http://www.algorithmic-solutions.com/，从名称就可以看出。
+	LEDA的是用C++语言写的关于数据类型和算法经典的开源库，
+
+d) Wykobi
+	Wykobi就是指的是Wykobi Computational Geometry Library ，参考网站就是：http://www.wykobi.com ，
+	这个用C++语言实现的开源库，功能比较全，但是实现思想比较传统，也是比较简单。可以作为研究用，但是作为项目参考意义就不是很大。
+	
+e) scilab
+	http://baike.baidu.com/view/272205.htm
+	
+f) Matlab
+
+g) NURBS
+	比传统的网格建模方式更好地控制物体表面的曲线度，从而能够创建出更逼真、生动的造型
+
+ h) Octave
+	Octave 是一个类似matlab和Scilab的数学软件包，可以进行各种运算，编程。它还有丰富的C++接口可以让用户编程时调用。它绘图使用gnuplot。
+	
+	
+	
+	BGL：Boost Graph Library 开源图形库

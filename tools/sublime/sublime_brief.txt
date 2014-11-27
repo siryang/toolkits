@@ -1,0 +1,30 @@
+功能：
+ 1.python控制台
+ 	使用Ctrl+`打开
+ 2.Package Control安装
+ 	打开python控制台，输入以下代码
+ 		import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
+ 	Ctrl+Shift+P后搜索install，选择Package Control:Install Packet可以安装插件
+ 3.安装自定义ColorTheme
+ 	a.Preferences --> Browse Package
+ 	b.解压到打开的目录
+ 	c.Perferences --> Color Scheme --> User
+
+
+问题：
+
+ 1.Sublime破解 - http://bbs.pediy.com/showthread.php?t=182774
+ 
+ 2.Sublime中文乱码
+ 	a.打开ANSI编码中文文档乱码
+	 	ANSI(Windows-1252)显示中文乱码 - 使用Package Control：Install Packet安装ConvertToUTF8插件，即可解决
+	b.打开的文件的文件名中文乱码
+	c.ruby程序输出中的中文乱码
+		用winrar打开“安装目录\\Packages"目录中Ruby.sublime-package
+		修改其中Ruby.sublime-build，增加"encoding": "GBK"（windows命令行返回的字符编码）
+		上面的改法，会导致UTF-8文本无法正常输出，最好是仍改回utf-8(默认)，并且将其他字符转码成utf-8
+
+3.编译执行ruby时，gets()无法交互
+4.sublime默认不支持ini文件高亮 https://github.com/clintberry/sublime-text-2-ini
+5.编译Python无法输出中文，同2-c中方法，修改Python.sublime-build增加	"encoding": "cp936"后解决
+

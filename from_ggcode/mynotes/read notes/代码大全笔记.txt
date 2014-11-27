@@ -1,0 +1,67 @@
+定义问题(problem definition)
+需求分析(requirements development)
+规划构建(construction planning)
+软件构架(software architecture) / 高层设计(high-level design)
+详细设计(detailed design)
+
+
+
+
+隐喻的重要性
+Trojan horse
+worm
+bug
+bomb
+crash
+flame
+twisted sex changer
+fatal error
+
+如果是简短的工程，即使错了，推倒再来，顶多损失一下午时间。
+如果是复杂工程，设计出了问题，你损失的就可能是几个月的时间。所以，软件设计很重要。关于这点，快速模型也变得重要
+
+把构建软件比喻成盖房子。
+
+如果是普通软件，你要用到大量高级语言和科学库，而不是自己实现，因为自己实现起来没有意义。如果是高级软件，你就需要一些定制的高级功能，这时，你要手动去实现更底层的东西。
+
+你可以把房屋结构性的支撑规划清楚，然后在日后决定用木板还是地毯、漆面颜色等。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

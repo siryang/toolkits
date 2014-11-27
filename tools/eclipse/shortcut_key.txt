@@ -1,0 +1,1 @@
+Ctrl + o : quick ouline£¬ search in current souce file.~

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Scons"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="Scons"
+			DisplayName="Scons"
+			CommandLine="scons"
+			Outputs="$(InputName).exe"
+			AdditionalDependencies="Sconstruct"
+			FileExtensions="*.s"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

@@ -1,0 +1,13 @@
+强连通分量:Strongly Connected Components
+复习：
+	深度遍历，两个时间戳f[u] d[u]，见图的遍历文档
+	
+Kosaraju:
+	1.构建原图G和反图GT
+	2.原图G深度搜索成森林，选一颗树进行深搜(搜索要求A-->B必须存在于Gt),每次搜索到的树都为一个强连通分量
+	
+Tarjan:
+	
+	
+Gabow:
+	

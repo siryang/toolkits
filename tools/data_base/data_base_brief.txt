@@ -1,0 +1,7 @@
+1.NoSql
+	非关系数据库。Not only SQL.
+	常用的NoSql有Membase、MongoDB、Hypertable、Apache Cassandra...
+2.分布式文件存储
+
+3.
+	

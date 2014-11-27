@@ -1,0 +1,16 @@
+View
+Content Providers
+Resource Manager
+Notification Manager
+Activety Manager 
+
+Android 包含一些C/C++库，这些库能被Android 系统中不同的组件使用。它们通过Android 应用程序框架
+为开发者提供服务。以下是一些核心库：
+? 系统C 库- 一个从BSD 继承来的标准C 系统函数库（ libc ）， 它是专门为基于embedded linux的设备定制的。
+? 媒体库- 基于PacketVideo OpenCORE；该库支持多种常用的音频、视频格式回放和录制，同时支持静态图像文件。编码格式包括MPEG4, H.264, MP3, AAC, AMR, JPG, PNG 。
+? SurfaceManager - 对显示子系统的管理，并且为多个应用程序提 供了2D和3D 图层的无缝融合。
+? LibWebCore - 一个最新的web 浏览器引擎用，支持Android 浏览器和一个可嵌入的web 视图。
+? SGL - 底层的2D图形引擎
+? 3D libraries - 基于 OpenGL ES 1.0 APIs 实现；该库可以使用硬件 3D 加速（如果可用）或者使用高度优化的3D 软加速。
+? FreeType -位图（bitmap）和矢量（vector）字体显示。
+? SQLite - 一个对于所有应用程序可用，功能强劲的轻型关系型数据库引擎。

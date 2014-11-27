@@ -1,0 +1,127 @@
+eax用于存放返回值。
+
+
+首先，在Windows下分析
+
+所有的程序都会先调用这段代码，用于指针跳转时保存状态。
+01041370  push        ebp  				// ebp压栈，bp用于保存栈底指针
+01041371  mov         ebp,esp 			// 保存sp到bp(bp一般用于保存地址)
+01041373  sub         esp,0C0h 			// 将sp减小COH个位置
+01041379  push        ebx  				// bx压栈
+0104137A  push        esi  
+0104137B  push        edi  
+0104137C  lea         edi,[ebp-0C0h] 
+01041382  mov         ecx,30h 
+01041387  mov         eax,0CCCCCCCCh 
+0104138C  rep stos    dword ptr es:[edi] 
+
+
+
+
+
+
+
+
+
+
+
+void MNAME##_reserve(MNAME* o, size_t newSize)\
+{\
+size_t index; \
+size_t mask;\
+MTYPE* newBuffer;\
+\
+if (newSize <= o->m_reservedSize)\
+return;\
+\
+mask = newSize << 1;\
+if (cq_bitScanReverse(&index, mask))\
+newSize = (size_t)(1) << index;\
+else\
+return;\
+\
+newBuffer = (MTYPE*)malloc(newSize * sizeof(MTYPE));\
+CQ_ASSERT(newBuffer != NULL);\
+if (newBuffer == NULL) \
+{ \
+CQ_TRACE("_expand, malloc returns NULL, size", newSize * sizeof(MTYPE)); \
+return; \
+} \
+CQ_TRACE("vector reserve complete, location", newBuffer);\
+memcpy(newBuffer, o->m_buffer, o->m_reservedSize * sizeof(MTYPE));\
+free(o->m_buffer);\
+CQ_TRACE("before give value, location", o->m_buffer);\
+o->m_buffer = newBuffer;\
+CQ_TRACE("after give value, location", o->m_buffer);\
+o->m_reservedSize = newSize;\
+}\
+\
+ 
+ 
+mov a, b; b = a
+sub a, b; b -= a;
+
+eax中保存返回值
+ 
+Dump of assembler code for function vectorVoidP_reserve:
+0x00000000004417b0 <vectorVoidP_reserve+0>: mov    %rbx,-0x18(%rsp)		sp - 18 --> bx   newSize
+0x00000000004417b5 <vectorVoidP_reserve+5>: mov    %rbp,-0x10(%rsp)		sp - 10 --> bp	 newBuffer
+0x00000000004417ba <vectorVoidP_reserve+10>: mov    %rdi,%rbx			BX-->DI			
+0x00000000004417bd <vectorVoidP_reserve+13>: mov    %r12,-0x8(%rsp)		SP-->r12
+0x00000000004417c2 <vectorVoidP_reserve+18>: sub    $0x28,%rsp			
+0x00000000004417c6 <vectorVoidP_reserve+22>: cmp    %rsi,(%rdi)			比较SI和DI		  newSize <= o->m_reservedSize(rsi)
+0x00000000004417c9 <vectorVoidP_reserve+25>: jb     0x4417e0 <vectorVoidP_reserve+48>	true则跳转到48,否则便return
+0x00000000004417cb <vectorVoidP_reserve+27>: mov    0x10(%rsp),%rbx		恢复跳转前状态
+0x00000000004417d0 <vectorVoidP_reserve+32>: mov    0x18(%rsp),%rbp
+0x00000000004417d5 <vectorVoidP_reserve+37>: mov    0x20(%rsp),%r12
+0x00000000004417da <vectorVoidP_reserve+42>: add    $0x28,%rsp
+0x00000000004417de <vectorVoidP_reserve+46>: retq  						return
+0x00000000004417df <vectorVoidP_reserve+47>: nop   
+0x00000000004417e0 <vectorVoidP_reserve+48>: lea    0x8(%rsp),%rdi		这里di似乎就是newSize，那么rsi就是o, 0x8(%sp)就是mask
+0x00000000004417e5 <vectorVoidP_reserve+53>: add    %rsi,%rsi				
+0x00000000004417e8 <vectorVoidP_reserve+56>: callq  0x43d4c0 <cq_bitScanReverse>
+0x00000000004417ed <vectorVoidP_reserve+61>: test   %eax,%eax			测试返回值
+0x00000000004417ef <vectorVoidP_reserve+63>: je     0x4417cb <vectorVoidP_reserve+27>	return if true
+0x00000000004417f1 <vectorVoidP_reserve+65>: movzbl 0x8(%rsp),%ecx						newSize = 1 << index
+0x00000000004417f6 <vectorVoidP_reserve+70>: mov    $0x1,%r12d
+0x00000000004417fc <vectorVoidP_reserve+76>: shl    %cl,%r12
+0x00000000004417ff <vectorVoidP_reserve+79>: lea    0x0(,%r12,8),%rdi		
+0x0000000000441807 <vectorVoidP_reserve+87>: callq  0x43c5f0 <cq_malloc>	malloc
+0x000000000044180c <vectorVoidP_reserve+92>: test   %rax,%rax
+0x000000000044180f <vectorVoidP_reserve+95>: mov    %rax,%rbp				newBuffer = malloc()
+0x0000000000441812 <vectorVoidP_reserve+98>: je     0x441868 <vectorVoidP_reserve+184> malloc null
+
+0x0000000000441814 <vectorVoidP_reserve+100>: lea    0x23abd(%rip),%rdi        # 0x4652d8
+0x000000000044181b <vectorVoidP_reserve+107>: mov    %eax,%esi
+0x000000000044181d <vectorVoidP_reserve+109>: callq  0x43df60 <cq_trace>	trace
+
+0x0000000000441822 <vectorVoidP_reserve+114>: mov    (%rbx),%rdx
+0x0000000000441825 <vectorVoidP_reserve+117>: mov    0x10(%rbx),%rsi
+0x0000000000441829 <vectorVoidP_reserve+121>: mov    %rbp,%rdi
+0x000000000044182c <vectorVoidP_reserve+124>: shl    $0x3,%rdx
+0x0000000000441830 <vectorVoidP_reserve+128>: callq  0x401a28 <memcpy@plt>	memcpy
+0x0000000000441835 <vectorVoidP_reserve+133>: mov    0x10(%rbx),%rdi
+0x0000000000441839 <vectorVoidP_reserve+137>: callq  0x43c590 <cq_free>		free
+0x000000000044183e <vectorVoidP_reserve+142>: mov    0x10(%rbx),%rsi
+
+0x0000000000441842 <vectorVoidP_reserve+146>: lea    0x23afd(%rip),%rdi        # 0x465346
+0x0000000000441849 <vectorVoidP_reserve+153>: callq  0x43df60 <cq_trace>	trace
+
+0x000000000044184e <vectorVoidP_reserve+158>: lea    0x23b0d(%rip),%rdi        # 0x465362
+0x0000000000441855 <vectorVoidP_reserve+165>: mov    %rbp,0x10(%rbx)
+0x0000000000441859 <vectorVoidP_reserve+169>: mov    %ebp,%esi				
+0x000000000044185b <vectorVoidP_reserve+171>: callq  0x43df60 <cq_trace>	trace
+
+0x0000000000441860 <vectorVoidP_reserve+176>: mov    %r12,(%rbx)
+0x0000000000441863 <vectorVoidP_reserve+179>: jmpq   0x4417cb <vectorVoidP_reserve+27>
+
+0x0000000000441868 <vectorVoidP_reserve+184>: lea    0x23aa4(%rip),%rdx        # 0x465313
+0x000000000044186f <vectorVoidP_reserve+191>: lea    0x2439d(%rip),%rdi        # 0x465c13
+0x0000000000441876 <vectorVoidP_reserve+198>: mov    $0x17,%esi
+0x000000000044187b <vectorVoidP_reserve+203>: xor    %eax,%eax
+0x000000000044187d <vectorVoidP_reserve+205>: callq  0x43e990 <cq_log>
+0x0000000000441882 <vectorVoidP_reserve+210>: lea    0x24437(%rip),%rcx        # 0x465cc0 <__PRETTY_FUNCTION__.5264>
+0x0000000000441889 <vectorVoidP_reserve+217>: lea    0x24383(%rip),%rsi        # 0x465c13
+0x0000000000441890 <vectorVoidP_reserve+224>: lea    0x23a96(%rip),%rdi        # 0x46532d
+0x0000000000441897 <vectorVoidP_reserve+231>: mov    $0x17,%edx
+0x000000000044189c <vectorVoidP_reserve+236>: callq  0x401888 <__assert_fail@plt>

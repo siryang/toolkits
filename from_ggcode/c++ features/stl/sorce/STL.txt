@@ -1,0 +1,41 @@
+组成元素：
+	容器（Container）、算法（Algorithms）、迭代器（Iterator），容器适配器（container adaptor），函数对象(functor)，除此之外还有STL其他标准组件。
+
+容器
+	1.数组
+		vector
+	2.链表
+		list
+		queue	
+		deque
+	3.树
+		map
+		multimap
+		set
+		multiset
+	4.图
+		hash_map
+		
+	基本成员函数
+	begin(), end(), rbegin(), rend(), front(), back(), at(), size(), empty(), at()
+	扩展成员函数
+	
+算法
+	find
+	sort
+	binary_search
+	find_if
+	
+		
+	
+迭代器-->工人
+	iterator
+	reverse_iterator
+	const_iterator
+	
+	
+适配器
+
+
+
+	

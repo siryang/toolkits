@@ -1,0 +1,249 @@
+========================
+
+跨平台项目构建
+	————C/C++项目的跨平台使用
+
+跨平台开发可以分为两种做法
+1.使用跨平台的编译工具，如GCC/Intel C++ Compiler/Tiny C Compiler
+
+gcc:
+gcc的跨平台是将gcc移植到windows上
+MinGW是将GCC编译器和GUN Binary Utilities移植到windows下的产物，是从Cygwin（1.3.3版）基础上发展而来的
+http://www.mingw.org/
+MSys可以用来代替cmd.exe，但是由于工作原理的不同，和cygwin相比速度更快、体积更小、功能强大，
+可以用MinGW + MSys
+http://code.google.com/p/msys-cn/
+
+Intel C++ Compiler：
+Intel 公司开发的 C/C++ 编译器，适用于 Linux、Microsoft Windows 和 Mac OS X 操作系统。
+据说同样的软件用Intel编译器编译的执行性能比GCC要好不少。
+http://software.intel.com/sites/products/documentation/hpc/composerxe/en-us/2011Update/cpp/lin/index.htm
+
+通常使用MinGW和跨平台的IDE搭配使用，如Eclipse + CDT、CodeBlocks、NetBean、CodeLite等。
+
+Tiny C Compiler:
+一个微型的C语言编译器，支持Linux和Windows，支持ANSI C，大部分的 ISO99 C的新标准和许多GNU C扩展以及C语言和汇编语言混编。
+它是一个自我依赖的系统，不需要其他外部的汇编器和连接器，甚至可以用来执行C脚本。
+http://bellard.org/tcc/
+
+Comeau C/C++
+http://en.wikipedia.org/wiki/Comeau_C/C++
+========================
+
+2.生成编译器需要项目文件或直接调用其它编译程序。
+Qmake
+qmake能够自动生成Makefile、Microsoft Visual Studio 专案文件 和 xcode 专案文件。
+不管源代码是否是用Qt写的，都能使用qmake。
+http://doc.qt.digia.com/4.5/qmake-manual.html
+
+CMake
+不会执行编译操作，而是产生标准的建构文档，如makefile、vs project file.
+可以认为是在这些编译器上的一层封装。
+http://www.cmake.org/	
+
+SCons 基于python的软件构建工具。
+脚本用的是Python，根据SCons规则创建类似脚本，默认情况下脚本会识别你的编译器，并根据脚本编译器调用编译指令。
+http://www.scons.org/wiki/FrontPage
+
+GYP  Generate Your Projects
+同样是用python当作脚本语言。
+能根据平台自动生成平台相关项目文件，如Mac的.xcodeproj、Windows的.sln，.project、Linux平台会生成Scons脚本或Makefile
+http://code.google.com/p/gyp/
+
+autotools 
+autotools对windows的支持不是很好
+
+OMake
+http://omake.metaprl.org/index.html
+
+Bjam
+http://www.boost.org/doc/libs/1_36_0/doc/html/jam.html
+http://www.boost.org/boost-build2/doc/html/bbv2/jam.html
+boost使用的编译脚本规范
+
+
+========================
+通常讲一个工具的套路
+1.起源+历史
+	cross platform make，一个开源的编译，测试，打包软件
+	
+	起源度娘 BLA BLA就不用讲了，值得一提的是CMake的流行是因为KDE4的开发者在使用了10年autotools后，终于决定为KDE4选择一个新的工程构建工具，其根本原因用KDE开发者的话说就是:只有少数几个“编译专家”能够掌握KDE现在的构建体系，经过一番筛选，KDE4的开发者选择了cmake，而且在项目迁移过程中异常的顺利。
+	
+	
+2.工作原理
+	Cmake 本身不会执行编译操作，而是产生标准的建构文档，如makefile、vs project，
+	
+	
+3.实际用途
+	有一天感觉自己写的Makefile内部组织很乱，于是决定找一个能自动生成Makefile的工具，同时，这个工具最好可以跨平台。
+	那么cmake就是你想要的。
+	
+	手写Makefile是比较困难而且容易出错，如果是在进行跨平台开发，则必须针对不同平台分别撰写Makefile，会增加跨平台开发复杂性与困难度
+	
+	另外cmake也可以用于大型项目,KDE4就是最好的证明
+
+	
+4.如何使用
+	讲解的主要目的是简短的介绍这个工具
+	首先需要写CMakeList.txt文件
+	1.CMakeList中可以做的事情
+		a.-I、-L、-l
+		b.static library、share library、exec
+		c.set output dir, set source dir
+		d.pre-definition、gcc pragma
+		e.if__else、while
+		f.message
+		g.option
+		h.aux_source_directory
+		i.variable
+		j.run shell command
+	----
+	然后调用cmake [options] <path-to-source>
+	
+	2.cmake参数	
+		
+	3.生成文件的内容
+		CMakeCache
+		
+	4.添加自定义组件
+	
+
+5.推荐教程
+	cmake官方网站 http://www.cmake.org/	
+	KDE的cmake教程  http://techbase.kde.org/Development/CMake	
+	Wikipedia的cmake教程 http://zh.wikibooks.org/wiki/CMake_入門
+	中文cmake入门教程 http://sewm.pku.edu.cn/src/paradise/reference/CMake%20Practice.pdf
+	Why the KDE project switched to CMake -- and how :http://lwn.net/Articles/188693/
+	
+	一个比较Make、SCons和Omake效率的帖子：http://ar.newsmth.net/thread-e420ab9ea5bfc.html
+		实验结果编译时间1:2:3
+----	
+	
+	
+	
+
+附录：
+
+1.GUN Binary Utilities：
+	as		汇编器
+	ld		连接器
+	gprof	性能分析工具程序
+	ar		可以对静态库做创建、修改和取出的操作。
+	c++filt	解码 C++ 的符号
+	dlltool	创建Windows 动态库
+	gold	另一种连接器
+	nlmconv	可以转换成NetWare Loadable Module目标文件格式
+	nm		显示目标文件内的符号
+	objcopy	复制目标文件，过程中可以修改
+	objdump	显示目标文件的相关信息，亦可反汇编
+	ranlib	产生静态库的索引
+	size	列出总体和section的大小
+	strings	列出任何二进制档内的可显示字符串
+	strip	从目标文件中移除符号
+	windmc	产生Windows信息资源
+	readelf 用来显示ELF格式目标文件的信息
+	windres	Windows 资源档编译器
+	addr2line	从目标文件的虚拟地址取得文件的行号或符号
+
+
+2.支持的编译器
+	doc中打cmake --help
+	
+Generators
+
+The following generators are available on this platform:
+  Borland Makefiles           = Generates Borland makefiles.
+  MSYS Makefiles              = Generates MSYS makefiles.
+  MinGW Makefiles             = Generates a make file for use with mingw32-make.
+  NMake Makefiles             = Generates NMake makefiles.
+  NMake Makefiles JOM         = Generates JOM makefiles.
+  Ninja                       = Generates build.ninja files (experimental).
+  Unix Makefiles              = Generates standard UNIX makefiles.
+  Visual Studio 10            = Generates Visual Studio 10 project files.
+  Visual Studio 10 IA64       = Generates Visual Studio 10 Itanium project files.
+  Visual Studio 10 Win64      = Generates Visual Studio 10 Win64 project files.
+  Visual Studio 11            = Generates Visual Studio 11 project files.
+  Visual Studio 11 ARM        = Generates Visual Studio 11 ARM project files.
+  Visual Studio 11 Win64      = Generates Visual Studio 11 Win64 project files.
+  Visual Studio 6             = Generates Visual Studio 6 project files.
+  Visual Studio 7             = Generates Visual Studio .NET 2002 project files.
+  Visual Studio 7 .NET 2003   = Generates Visual Studio .NET 2003 project files.
+  Visual Studio 8 2005        = Generates Visual Studio 8 2005 project files.
+  Visual Studio 8 2005 Win64  = Generates Visual Studio 8 2005 Win64 project files.
+  Visual Studio 9 2008        = Generates Visual Studio 9 2008 project files.
+  Visual Studio 9 2008 IA64   = Generates Visual Studio 9 2008 Itanium project files.
+  Visual Studio 9 2008 Win64  = Generates Visual Studio 9 2008 Win64 project files.
+  Watcom WMake                = Generates Watcom WMake makefiles.
+  CodeBlocks - MinGW Makefiles= Generates CodeBlocks project files.
+  CodeBlocks - NMake Makefiles= Generates CodeBlocks project files.
+  CodeBlocks - Ninja          = Generates CodeBlocks project files.
+  CodeBlocks - Unix Makefiles = Generates CodeBlocks project files.
+  Eclipse CDT4 - MinGW Makefiles = Generates Eclipse CDT 4.0 project files.
+  Eclipse CDT4 - NMake Makefiles = Generates Eclipse CDT 4.0 project files.
+  Eclipse CDT4 - Ninja        	 = Generates Eclipse CDT 4.0 project files.
+  Eclipse CDT4 - Unix Makefiles  = Generates Eclipse CDT 4.0 project files. 
+
+  
+  
+3.CMakeList语法
+	常用函数
+	#:注释
+	link_directories(<dir1> <dir2> ...)
+	include_directories(<dir1> <dir2> ...)
+	link_library(<lib1> <lib2> ...)
+	target_link_library(<target> <lib> ...)
+	
+
+	add_executable(target_name source_file1 source_file2 ...) 创建可执行程序
+	add_library(target SHARED|STATIC source_file1 source_file2...) 创建库
+	
+	add_definition(-g)、add_definition(-DXXX)预定义，如gcc -DXXX
+	add_dependencies(target1 target2 ...) 项目依赖关系，target1依赖后面的项目
+	message(STATUS|SEND_ERROR|FATAL_ERROR "message")
+	option(<key> "A/B/C/D")
+	set(<key> <value>)
+	project() project名称
+	aux_source_directory(<dir> <variable>) 扫描目录下所有文件，并加入到变量中
+	
+	
+	cmake_minimum_required(VERSION XXX) 需要最小cmake工具版本
+	
+	exec_program() 运行程序
+	----
+	
+	判断语句
+	if ()
+	elseif()
+	endif()
+	
+	while()
+		...
+	endwhile()
+	
+	foreach(m list)
+	endforeach(m)
+	list有三种表示方式
+		1.空格分隔的数据
+		2.${Var}
+		3.RANGE total
+	----
+	
+	系统变量
+	CMakeCache.txt
+	
+	CMAKE_C_COMPILER 设置C编译器
+	CMAKE_CXX_COMPILER 设置C++编译器
+	CMAKE_C_FLAGS 设置C编译选项
+	CMAKE_CXX_FLAGS 设置C++编译选项
+	
+	EXECUTABLE_OUTPUT_PATH 设置可执行文件的输出目录
+	LIBRARY_OUTPOUT_PATH 设置库文件的输出目录
+
+	CMAKE_BUILD_TYPE=<Debug|Release>
+	CMAKE_CURRENT_BINARY_DIR
+	
+4.CMake参数
+	1. -P切换到脚本模式运行
+	2. -D定义option中的变量
+	3. --help-command cmd和--help-comman-list
+	

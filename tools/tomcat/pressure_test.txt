@@ -1,0 +1,3 @@
+WSA_IO_PENDING:
+	参考http://blog.csdn.net/zeeslo/article/details/1938160
+	压力测试遇到的错误类型，如果开的线程过多，可能某些资源不足导致不停的上下文切换，就会有thread得不到资源，从而出现pending。

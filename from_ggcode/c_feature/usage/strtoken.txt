@@ -1,0 +1,14 @@
+void token()
+{
+	char p[100] = "beijing, wuhan, meiguo";
+	const char* fields = ",";
+	char* context;
+	const char* token;
+	token = strtok_s(p, fields, &context);
+	while (token)
+	{
+		token = strtok_s(NULL, fields, &context);
+		printf ("%s\n", token);
+		token = token + strlen(token);
+	}
+}

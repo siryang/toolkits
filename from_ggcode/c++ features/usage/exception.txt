@@ -1,0 +1,32 @@
+
+http://www.cplusplus.com/doc/tutorial/exceptions/
+1.
+try
+{
+	throw 20;
+}
+catch (int e)
+{
+	cout << "Exception " << e << endl;
+}	
+
+2.
+try
+{
+}
+catch (int e)
+catch (char e)
+catch (CMemoryException* e)
+catch (CFileException* e)
+catch (CException* e)
+catch (...)	// 获取上面没有捕获的所有异常
+
+
+3. 自定义异常处理函数
+class myexception: public exception
+{
+	virtual const char* what() const throw()
+	{
+		return "My exception happened";
+	}
+} myex;

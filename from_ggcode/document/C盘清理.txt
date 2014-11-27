@@ -1,0 +1,31 @@
+C盘满了，哪些东西可以删掉
+SpaceSniffer工具可以用来查看硬盘中所有文件大小
+
+首先我看到一个很大文件hiberfil.sys，11.9Gb
+	http://www.howtogeek.com/howto/15140/what-is-hiberfil.sys-and-how-do-i-delete-it/中有详细解释
+	简单来说就是windows系统休眠时，需要将内存写入硬盘，如果关闭休眠功能，则可以删掉这个文件。
+		命令: powercfg -h off
+		这属于一个无奈的选择，关闭功能打到节约空间的目的。
+
+好了，对我来说立马有了11.9Gb的C盘空间
+
+Windows/System32/DriverStore里面有1.1G, 主要还是在FileRespository里面，据了解是驱动签名文件，系统使用久了这些文件是会变大的，但都是有用文件，先不删。
+Windows/winsxs文件夹有12.3Gb
+	http://www.howtogeek.com/174705/how-to-reduce-the-size-of-your-winsxs-folder-on-windows-7-or-8/
+	此目录保存windows历史更新，windows机制允许更新以后还原更新，所以会在此目录下保存所有已安装更新的备份，所以我们可以通过网站中的方法进行清理
+Windows/Installer 4.7G
+	从文件夹名称可以看出是软件安装程序的备份目录，类似winsxs，用于删除软件时调用
+	文件夹用途详细信息见：http://blogs.msdn.com/b/sqlserverfaq/archive/2013/04/30/do-not-delete-files-from-the-windows-installer-folder.aspx
+		里面保存的是已安装程序版本信息，用于软件更新、卸载，不建议删除。
+	不过可以移动，http://social.technet.microsoft.com/Forums/windows/en-US/83f91066-7918-4449-9b45-d2bea3e1a46d/can-you-move-the-windows-installer-folder-using-junctions?forum=w7itprogeneral
+	里面用到了一个叫“junction"的windows工具，就是可以创建链接，但是不是windows版本的快捷方式，这么一来所有文件夹都可以移动了。
+	http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx 有这个工具，往下我就不用继续删了吧。。
+	
+	
+删除了上面所有文件后，硬盘腾出来了19G
+
+但是第二天开机，C盘又只剩3G了。查了一下，多出来了一个pagefile.sys，是windows系统文件，用于虚拟内存（系统内存不足时使用），系统给这个文件默认指定了16G
+可以在系统设置里面修改此值，我使用了2G，如果自信内存足够，可以删除。
+	
+windows的hiberfil.sys 和 pagefile.sys两个文件加起来就几十个G了。
+	

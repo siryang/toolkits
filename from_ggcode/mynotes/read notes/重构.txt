@@ -1,0 +1,22 @@
+常见的重构方法
+
+	1.数据结构不合理
+	2.变量名称
+	3.过长函数、过大的类、过长的参数列
+	4.对象成员及对象间关系
+		GOF Gang of Four
+	5.减少临时变量
+	
+	Duplicated Code 重复代码
+	Long Method
+	Large Class
+	Long Parameter List
+	Divergent Change 发散式变化
+	Shotgun Surgery 霰弹式修改
+	Feature Envy 依恋情结
+	
+
+注意事项
+	1.重构要避免引入BUG，所以需要可靠的测试系统
+	2.添加新功能和重构分离，要搞清楚自己在做什么
+	3.

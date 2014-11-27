@@ -1,0 +1,33 @@
+1.去IOE，去SOA
+	IOE：IBM、Oracle、EMC
+		I:小型机。IBM的P系列主机，携AIX（*nix）系统
+		O:集中式数据库。Oracle数据库（RDBMS）
+		E:高端存储的技术架构。EMC中高端SAN存储
+	EMC：
+	SOA：SAP、Oracle、Accenture
+	
+2.协程 Coroutine
+	子例程：一个子例程就是一次子函数调用
+	协程可以通过yield来调用其它协程，通过yield方式转移执行权的协程之间是对称、平等关系
+	
+3.Open Soiurce License
+	BSD License 
+	GPL
+	LGPL
+	WTFPL
+
+4.R语言
+
+5.热情求值/及早求值
+	惰性求值
+	部分求值
+	远程求值
+	短路求值
+
+6.绿色线程（Green threads）——Task
+	并发执行的单元，是作用于用户控件的线程，创建和调度成本较低，可以大量共存。
+	目前Go, Erlang, Python的Gevent和Clojure里发展的core.async都采用这种绿色线程模式。
+	
+	模式匹配、闭包、泛型
+7.硬编码，软编码
+	

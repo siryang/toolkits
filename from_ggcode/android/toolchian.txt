@@ -1,0 +1,17 @@
+ADT: 
+	Eclipse for Android的插件
+SDK:
+	Android开发工具集合
+	
+360优化大师:
+	360优化大师里面有进程内存、CPU占用情况。
+
+PC Monitor：
+	在手机上监控PC，但是目前不清楚是否能在PC上监控手机。
+	需要两个都装客户端
+
+OS Monitor:
+	Android上运行的系统监控程序，看上去很专业
+	
+AnotherMonitor:
+	交互较少，应该是某个Geek自己用的

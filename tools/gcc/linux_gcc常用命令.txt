@@ -1,0 +1,126 @@
+
+
+==============================================================
+
+-Wl,<option1>,<option2>
+Wl告诉编译器，Wl后面跟的参数，是gcc链接器才用到的参数
+
+-soname 指定动态库的共享名称
+
+-rpath=<path1>,<path2>
+编译时，设置所链接的动态库搜索路径
+经验证，可以使用"-rpath . " 可以使用"-rpath,."也可以使用"-rpath=.",也可以使用"-rpath=./"
+
+-fPIC 保证生成的东西和相对地址无关
+共享库需要加这个参数，因为共享库运行时加载，加载位置不同，所以需要用-fPIC
+
+-static 使用动态库链接，阻止连接共享库
+
+-I -i -L -l
+-E -S -c -o //注意大小写
+
+-m64
+
+-mfloat-abi=soft  使用软浮点
+
+-mfloat-abi=softfp
+-mfloat-abi=hard
+使用硬浮点
+-mfpu=xxx 常见的xxx有vfp和fpa
+
+  
+======================================================GCC环境变量======================================================
+
+C_INCLUDE_PATH
+	编译 C 程序时使用该环境变量。该环境变量指定 一个或多个目录名列表，查找头文件，就好像在命令行中指定 -isystem 选项一样。会首先查找 -isystem 指定的所有目录。也见 CPATH 、 CPLUS_INCLUDE_PATH 和 OBJC_INCLUDE_PATH 。
+COMPILER_PATH
+	该环境变量指定一个或多个目录名列表，如果没有 指定 GCC_EXEC_PREFIX 定位子程序，编译程序会在此查找它的子程 序。也见 LIBRARY_PATH 、 GCC_EXEC_PREFIX 和 -B 命令行选项。
+CPATH
+	编译 C 、 C++ 和 Objective-C 程序时使用该环境变量。该 环境变量指定一个或多个目录名列表，查找头文件，就好像在命令行 中指定 -l 选项一样。会首先查找 -l 指定的所有目录。也见 C_INCLUDE_PATH 、 CPLUS_INCLUDE_PATH 和 OBJC_INCLUDE_PATH
+CPLUS_INCLUDE_PATH
+	编译 C++ 程序时使用该环境变量。该环境变 量指定一个或多个目录名列表，查找头文件，就好像在命令行中指定
+	isystem 选项一样。会首先查找 -isystem 指定的所有目录。也见 CPATH 、 C_INCLUDE_PATH 和 OBJC_INCLUDE_PATH 。
+DEPENDENCIES_OUTPUT
+	为文件名设置该环境变量会让预处理程序将 基于依赖关系的 makefile 规则写入文件。不会包括系统头文件名字。 如果环境变量设置为单名，被看作是文件名字，而依赖关系规则的名 字来自源文件名字。如果定义中有两个名字，则第二个名字是用作依 赖关系规则的目标名。设置该环境变量的结果和使用命令行选项
+	MM 、 -MF 和 -MT 的组合是一样的。也见 SUNPRO_DEPENDENCIES
+GCC_EXEC_PREFIX
+	如果定义了该环境变量，它会作为编译程序执行的 所有子程序名字的前缀。例如，如果将变量设置为 testver 而不是查 找 as ，汇编器首先会在名字testveras 下查找。如果在此没有找 到，编译程序会继续根据它的普通名进行查找。可在前缀名中使用斜 线指出路径名。
+GCC_EXEC_PREFIX
+	的默认设置为 prefix /lib/gcc-lib/ ，这里的 prefix 是安装编译程序时 configure 脚本指定的名字。该前缀也用 于定位标准连接程序文件，包含进来作为可执行程序的一部分。如果 使用 -B 命令行选项，会重写该设置。也见 COMPILER_PATH 。
+LANG
+	该环境变量用于指出编译程序使用的字符集，可创建宽字符文 字、串文字和注释。定义 LANG 为 C-JIS ，指出预处理程序将多字 节字符按照 JIS （日语工业标准）字符进行解释。 C-SJIS 可用来 指出 Shift -JIS 字符而 C-EUCJP 指出日文 EUC 。如果没有定义 LANG ，或定义为不可识别，函数 mblen() 被用来确定字符宽度，而 mbtowc() 用来将多字节序列转换为宽字符。
+LC_ALL
+	如果设置，该环境变量的值重写 LC_MESSAGES 和 LC_CTYPE 的所有设置。
+LC_CTYPE
+	该环境变量指出引用串中定义的多字节字符的字符分类。 主要用于确定字符串的字符边界，字符编码需要用引号或转义符，可 被错误地解释为字符串的结尾或特殊字符串。对 Australian English ，可将它设置为 en_AU ； 对 Mexican Spanish ，可将它 设置为 es_MX。如果没有设置该变量，默认为 LANG 变量的值，或如 果没有设置 LANG ，那就使用 C 英语行为。也见 LC_ALL 。
+LC_MESSAGES
+	该环境变量指出编译程序使用何种语言发出诊断消息。 对 Australian English ，可设置为 en_AU ；对 MexicanSpanish ，可设置为 es_MX 。如果变量没有设置，使用 LANG 变量的默认 值，或如果没有设置 LANG ，那就使用 C英语行为。也见 LC_ALL 。
+LD_LIBRARY_PATH
+	该环境变量不会影响编译程序，但程序运行的时 候会有影响。变量指定一个目录列表，程序会查找该列表定位共享库。 只有当未在编译程序的目录中找到共享库的时候，执行程序必须设置 该变量。
+LD_RUN_PATH
+	该环境变量不会影响编译程序，但程序运行的时候会 有影响。该变量在运行时指出文件的名字，运行的程序可由此得到它 的符号名字和地址。地址不会重新载入，因而可能符号引用其他文件 中的绝对地址。这和 ld 工具使用 -R 选项完全一样。
+LIBRARY_PATH
+	该环境变量可设置为一个或多个目录名字列表，连接 程序会搜寻该目录，以查找特殊连接程序文件，和由 -l （字母 l ）命令行选项指定名字的库。由 -L 命令行选项指定的目录在环境变 量的前面，首先被查找。也见 COMPILER_PATH 。
+OBJC_INCLUDE_PATH
+	在编译 Objective-C 程序的时候使用该环境变 量。一个或多个目录名的列表由环境变量指定，用来查找头文件，就 好像在命令行中指定 -isystem 选项一样。所有由 -isystem 选项指 定的目录会首先被查找。也见 CPATH 、 CPLUS_INCLUDE_PATH 和 C_INCLUDE_PATH 。
+SUNPRO_OUTPUT
+	为文件名设置该环境变量会令预处理程序将基于依 赖关系的 makefile 规则写入文件。会包含系统头文件名。如果环境 变量被设置为单个名字，它将会被当作文件名，依赖关系规则中的名 字将由源文件的名字中获得。如果定义中有两个名字，第二个名字就 是依赖关系规则中的目标名。设置该环境变量的结果与在命令行中使 用参数 -M 、 -MF 和 -MT 的效果一样。参见 DEPENDENCIES_OUTPUT 。
+TMPDIR
+	这个变量包含了供编译程序存放临时工作文件的目录的路径 名。这些文件通常在编译过程结束时被删除。这种文件的一个例子就 是由预处理程序输出并输入给编译程序的文件。
+
+======================================================GCC环境变量==End====================================================
+
+
+==============================================================
+gcc 在编译时如何去寻找所需要的头文件:
+
+	A:header file的搜寻会从-I开始
+	B:然后找gcc的环境变量 C_INCLUDE_PATH,CPLUS_INCLUDE_PATH,OBJC_INCLUDE_PATH
+	C:再找内定目录 :
+		/usr/include
+		/usr/local/include
+		/usr/lib/gcc-lib/i386-linux/2.95.2/include
+		/usr/lib/gcc-lib/i386-linux/2.95.2/../../../../include/g++-3
+		/usr/lib/gcc-lib/i386-linux/2.95.2/../../../../i386-linux/include
+
+/etc/ld.so.conf中指定动态库搜索路径	
+==============================================================
+
+
+===============================遇到的问题===============================
+疑问：
+	libRouteEngine调用libnavi_online,用了-Wl,-rpath=.
+	ldd查看libRouteEngine后 	libnavi_online.so => ./libnavi_online.so 
+	为什么编译出来的libRouteEngine调用libnavi_online还需要查找/lib64/libnavi_online.so
+		不知道为什么jni调用仍然需要在/lib64下查找
+		
+	为什么libRouteEngine调用libnavi_online说缺少某个symbol但是test_so.out直接调用libnavi_online.so就可以执行
+		缺少的symble为
+			undefined symbol: _ZTVN10__cxxabiv121__vmi_class_type_infoE	(./libnavi_online.so)
+			undefined symbol: _ZTVN10__cxxabiv117__class_type_infoE	(./libnavi_online.so)
+			undefined symbol: __cxa_pure_virtual	(./libnavi_online.so)
+			undefined symbol: __gxx_personality_v0	(./libnavi_online.so)
+		后查资料得知，此为C++中虚函数和class需要的接口，编译的时候用gcc链接 c++和c生成的lib导致缺少这些接口实现
+		但是在编译时没有报错。
+		链接时改用g++，解决问题。
+
+GCC不常用参数
+	-x 指定使用的编程语言
+	-combine 将多个源文件一次传递给汇编
+	-g and -ggdb
+		-g
+        该选项可以利用操作系统的“原生格式（native format）”生成调试
+        信息。GDB 可以直接利用这个信息，其它调试器也可以使用这个调试信息
+        -ggdb
+        使 GCC 为 GDB 生成专用的更为丰富的调试信息，但是，此时就不能用其
+        他的调试器来进行调试了 (如 ddx)
+		
+		-g1 -g2 -g3 -ggdb1 -ggdb2 -ggdb3
+	-s
+		除去符号表和重定位信息，用于降低生成文件的大小
+	
+	
+		
+==============================================================
+
+

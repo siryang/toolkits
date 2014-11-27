@@ -1,0 +1,1 @@
+#include "class_initialize.h"

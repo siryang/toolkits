@@ -1,0 +1,27 @@
+笔记
+
+Google编程规范里面提供了一个el.
+	http://google-styleguide.googlecode.com/svn/trunk/google-c-style.el
+	
+
+; 模式开始显示行号模式， 再次输入 M-x linum-mode会取消显示行号
+(global-linum-mode t)
+
+(global-set-key (kbd "<C-tab>") 'other-window)
+(global-set-key (kbd "<f5>")   'compile)
+(global-set-key (kbd "<f6>")   'gdb) 
+
+(global-set-key [f11] 'my-fullscreen) ;; 启动全屏的快捷键
+;全屏
+(defun my-fullscreen ()
+(interactive)
+(x-send-client-message
+nil 0 nil "_NET_WM_STATE" 32
+'(2 "_NET_WM_STATE_FULLSCREEN" 0))
+)
+
+(add-to-list 'load-path' "~/.emacs.d/plugins")
+
+
+
+

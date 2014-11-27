@@ -1,0 +1,13 @@
+
+
+测试环境 VS2008 Win32 Debug 
+
+map<size_t, size_t> （sizeof(size_t） == 4)
+
+原始内存 1.2K
+插入1E4个数据 内存占用 1.9K
+插入1E5个数据 内存占用 8.3K
+插入1E5个数据 内存占用 71.7K
+
+综上，map平均插入一个pair<size_t, size_t>占用70Byte
+map实现是红黑树，必然要占用多余内存，但是占用这么多还真不靠谱啊。
