@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "begin", "project\begin.vcproj", "{DCCEE3AB-71B3-4706-836F-7E688299BDED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B776B83C-FF75-4856-BF9F-DABDBD4BF600}"
+	ProjectSection(SolutionItems) = preProject
+		doc\mb_read_note.txt = doc\mb_read_note.txt
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "texture", "project\texture.vcproj", "{ADB04F94-6DC8-411C-BDD8-CF6A63ED8072}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "camera", "project\camera.vcproj", "{BAD8BFFB-833F-4AE0-965B-6B0A8A202BC7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "project\matrix.vcproj", "{F48F7A99-22A9-4AE5-ACF7-B142C84389FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCCEE3AB-71B3-4706-836F-7E688299BDED}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DCCEE3AB-71B3-4706-836F-7E688299BDED}.Debug|Win32.Build.0 = Debug|Win32
+		{DCCEE3AB-71B3-4706-836F-7E688299BDED}.Release|Win32.ActiveCfg = Release|Win32
+		{DCCEE3AB-71B3-4706-836F-7E688299BDED}.Release|Win32.Build.0 = Release|Win32
+		{ADB04F94-6DC8-411C-BDD8-CF6A63ED8072}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ADB04F94-6DC8-411C-BDD8-CF6A63ED8072}.Debug|Win32.Build.0 = Debug|Win32
+		{ADB04F94-6DC8-411C-BDD8-CF6A63ED8072}.Release|Win32.ActiveCfg = Release|Win32
+		{ADB04F94-6DC8-411C-BDD8-CF6A63ED8072}.Release|Win32.Build.0 = Release|Win32
+		{BAD8BFFB-833F-4AE0-965B-6B0A8A202BC7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BAD8BFFB-833F-4AE0-965B-6B0A8A202BC7}.Debug|Win32.Build.0 = Debug|Win32
+		{BAD8BFFB-833F-4AE0-965B-6B0A8A202BC7}.Release|Win32.ActiveCfg = Release|Win32
+		{BAD8BFFB-833F-4AE0-965B-6B0A8A202BC7}.Release|Win32.Build.0 = Release|Win32
+		{F48F7A99-22A9-4AE5-ACF7-B142C84389FB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F48F7A99-22A9-4AE5-ACF7-B142C84389FB}.Debug|Win32.Build.0 = Debug|Win32
+		{F48F7A99-22A9-4AE5-ACF7-B142C84389FB}.Release|Win32.ActiveCfg = Release|Win32
+		{F48F7A99-22A9-4AE5-ACF7-B142C84389FB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

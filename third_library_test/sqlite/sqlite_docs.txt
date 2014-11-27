@@ -1,0 +1,27 @@
+SQLite
+1.open-->connect
+	如果没有会创建数据库
+	
+create table tbl1(one varchar(10), two smallint)
+
+CREATE TABLE tbl2 (
+  f1 varchar(30) primary key,
+  f2 text,
+  f3 real
+)
+
+SELECT sql FROM 
+   (SELECT * FROM sqlite_master UNION ALL
+    SELECT * FROM sqlite_temp_master)
+WHERE type!='meta'
+ORDER BY tbl_name, type DESC, name
+
+SELECT sql FROM
+   (SELECT * FROM sqlite_master UNION ALL
+    SELECT * FROM sqlite_temp_master)
+WHERE type!='meta' AND sql NOT NULL AND name NOT LIKE 'sqlite_%'
+ORDER BY substr(type,2,1), name
+
+
+
+crate table USER values(OBDMac char(10), userId char(10), carNo char(10), userName char(20)) nickName char(20), passWord char(20), originMiles int, OBDMiles int, phoneNum char(20)

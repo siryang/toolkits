@@ -1,0 +1,46 @@
+bootstrap.bat: 用于生成bjam
+bjam: boost的编译工具
+project-config.jam: 编译boost的配置文件
+boost库：
+	Accumulators:
+		Framework for incremental calculation, and collection of statistical accumulators.
+	Algorithm:
+		A collection of useful generic algorithms.
+	Any
+		Safe, generic container for single values of different value types.
+
+bjam:
+	bjam [options] [properties] [install | stage]
+	bjam install/stage --toolset=msvc-9.0
+
+	stage是只生成库(dll和lib) install 还会生成头文件的include目录。
+	toolset 指定编译器如borland/gcc/msvc(VC6)/msvc-9.0(vs2008)等
+	--show-libraries
+	--with-<library> 编译指定的库
+	--without-<library> 不编译指定的库
+	link=static  静态编译
+	threading=multi 支持多线程
+	--stagedir="path" 生成库的存放位置
+	debug/release 编译debug/release版本，可以都编译
+	--build-type=complete 完全编译
+	
+	
+	
+Install and compile: 
+	http://www.cnblogs.com/wondering/archive/2009/05/21/boost_setup.html
+Official build document : 
+	http://www.boost.org/boost-build2/doc/html/bbv2/tutorial/properties.html
+
+http://wiki.tiker.net/BoostInstallationHowto
+
+
+白话C++之安装boost：http://www.d2school.com/bhcpp_book/2_5.php
+Windows VC6编译安装Boost库：http://blog.csdn.net/weekly123/archive/2007/11/23/1899188.aspx
+boost编译步骤：http://blog.csdn.net/aheroofeast/archive/2009/03/22/4015458.aspx
+boost 1.35.0 Visual Studio 2008编译指南：http://blog.csdn.net/benjiamen/archive/2008/07/12/2643705.aspx
+VS2008下安装boost:http://www.cnblogs.com/xdotnet/archive/2008/03/22/boost_install_config.html
+boost 1_43_0 在arm-linux下编译：http://blog.csdn.net/yujun_huoxu/article/details/7913135
+
+
+boost::thread
+

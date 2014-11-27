@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_dither", "example\test_dither\dither.vcproj", "{1DDEA86F-3DA1-43C0-81B2-089E950B5F3B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qt_hello", "qt_hello\config\qite.vcproj", "{B2C1B81B-1075-4C35-91E6-82E0714EF5DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1DDEA86F-3DA1-43C0-81B2-089E950B5F3B}.Release|Win32.ActiveCfg = Release|Win32
-		{1DDEA86F-3DA1-43C0-81B2-089E950B5F3B}.Release|Win32.Build.0 = Release|Win32
+		{B2C1B81B-1075-4C35-91E6-82E0714EF5DB}.Release|Win32.ActiveCfg = Release|Win32
+		{B2C1B81B-1075-4C35-91E6-82E0714EF5DB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

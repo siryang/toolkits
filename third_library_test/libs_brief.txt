@@ -1,0 +1,122 @@
+mlpack: 通用的C++机器学习库
+	http://www.mlpack.org/doxygen.php
+
+Armadillo C++ matrix : 通用的矩阵、向量等代数算法的实现
+	http://arma.sourceforge.net
+
+LibXml2:
+
+SFML: Simple and Fast Multimedia Library
+GLFW: OpenGL For Window
+	multi-platform library for creating windows with openGL.
+SDL: Simple DirectMedia Layer
+	 provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D
+GLEW: 
+GLM
+
+AVbin : 跨平台多媒体解码库
+
+AcceleratingQueriesUsingGPU_src: 使用GPU优化程序的案例
+
+Booths Algorithm_v2： BOOTHS算法介绍，booths算法是ARM CPU做乘法运算的优化算法，很高效，最多4个指令周期可以完成运算，根据连续0/1的个数
+
+coder's_basic_self_cultivation_link_and_load：赵文峰博士讲的《程序员的基本素养》，目的讲解源码编译的过程
+
+GoAgent: 使用GoogleAgent做代理的工具
+
+ffDynaPass:动态通,翻墙工具
+
+iRover配套程序_by_Bode: 有人把IPHONE变成了遥控汽车，这个是程序..
+
+LogParser：log文件查看工具，具体什么用途以后再研究吧
+
+mapnik：　Mapnik 是一个用来开发 GIS 应用程序的工具包
+
+Moma2-8: 将.Net程序转化为Mono程序，Mono是跨平台的.NET运行环境 
+
+OllyICE：一个反汇编工具，安靖宇同学用来破解010Editor...
+
+zlib125	: zlib source code
+zlib125dll : zlib for win32
+
+libpng-1.2.37-lib: libpng lib
+lp170a02: libpng code
+
+FileZilla: Ftp工具
+
+libcurl: C语言访问URL的库
+
+Cairo: 绘图工具，支持C和python
+
+
+Booths Algorithm ARM构架对浮点运算的优化方案。
+	00： 字串0的中間部份，不需要算術運算 
+	01： 字串1的結尾，所以將被乘數加到乘積的左半部 
+	10： 字串1的開端，所以從乘積的左半部減去被乘數 
+	11： 字串1的中間部份，所以不需要算術運算 
+
+coder's_basic_self_cultivation_link_and_load: 博士的讲课内容。程序员的基本修养。
+
+icu4c：Unicode开发包。
+	ICU：International Component for Unicode 是一套稳定成熟、功能强大、轻便易用和跨平台支持Unicode 的开发包，使得开发人员在 C/C++ 和 Java 上开发全球化软件产品更容易，ICU 是由 IBM 发布和维护，并且是开放源代码的。
+
+
+LogParser：Winodws系统日志解析器。
+
+matplotlib：python的统计图绘图工具
+
+mjson: C版json解析和生成工具，感觉性能不太高。
+
+PIL：python image library.
+
+ProcessExplorer：进程管理工具，刚发现一个强大的功能，进程属性中，可以查看此进程的所有线程，竟然还能看到这个线程正在调用的DLL和对应的函数名。
+
+
+SWIG：一个多语言相互调用的框架。
+
+
+vld:VS内存泄露检测工具
+
+
+	DX == DirectX 是由微软公司创建的多媒体编程接口。由C++编程语言实现，遵循COM。
+	ICONV 编码格式转换，MultiByteToWideChar好像只能用于Microsoft Visual C++.
+	Irrlicht
+
+	CEGUI（Crazy Eddie’s GUI ）是一个自由免费的GUI库，基于LGPL协议，使用C++实现，完全面向对象设计。
+目前将CEGUI作为游戏界面库开发的游戏已经有好多种，国内的天龙八部，巨人等游戏就是很好的例子。
+
+
+
+
+
+	OGRE 是一个开源的3D引擎库，封装了OpenGL和DirectX
+
+
+
+	freeimage免费的、开源的、跨平台（Windows 、Linux 和Mac OS X ）的，支持20 多种图像类型的（如BMP 、JPEG 、GIF 、PNG 、TIFF 等）图像处理库。
+其最大优点就是采用插件驱动型架构，具有快速、灵活、简单易用的特点，得到了广泛使用。但是不支持矢量图形和高级图像处理。
+
+
+	Log4cpp是一个开源的C++类库，它提供了在C++程序中使用日志和跟踪调试的功能。
+
+	Memcache是一个高性能的分布式的内存对象缓存系统，通过在内存里维护一个统一的巨大的hash表，它能够用来存储各种格式的数据，包括图像、视频、文件以及数据库检索的结果等。使用Memcache的网站一般流量都是比较大的，为了缓解数据库的压力，让Memcache作为一个缓存区域，把部分信息保存在内存中，在前端能够迅速的进行存取。那么一般的焦点就是集中在如何分担数据库压力和进行分布式
+
+	nedmalloc是一个内存分配器。
+
+	ImageStone is a powerful C++ class library for image manipulation. Its features include load, save, display, transformation, and nearly 100 special image effects. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
