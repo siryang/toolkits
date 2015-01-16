@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "map_render_agg", "configs\vs2012\map_render_agg.vcxproj", "{02DF060C-7992-478F-8962-1DC76FDEA56E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "k_nearest_neighbor", "k_nearest_neighbor\config\k_nearest_neighbor.vcxproj", "{8205F9DC-73DB-4C49-86E6-E807A261E91E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{02DF060C-7992-478F-8962-1DC76FDEA56E}.Debug|Win32.Build.0 = Debug|Win32
 		{02DF060C-7992-478F-8962-1DC76FDEA56E}.Release|Win32.ActiveCfg = Release|Win32
 		{02DF060C-7992-478F-8962-1DC76FDEA56E}.Release|Win32.Build.0 = Release|Win32
+		{8205F9DC-73DB-4C49-86E6-E807A261E91E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8205F9DC-73DB-4C49-86E6-E807A261E91E}.Debug|Win32.Build.0 = Debug|Win32
+		{8205F9DC-73DB-4C49-86E6-E807A261E91E}.Release|Win32.ActiveCfg = Release|Win32
+		{8205F9DC-73DB-4C49-86E6-E807A261E91E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

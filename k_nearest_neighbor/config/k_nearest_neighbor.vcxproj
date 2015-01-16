@@ -10,25 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\map_render_agg\code\source\agg_frame.cpp" />
-    <ClCompile Include="..\..\map_render_agg\code\source\grid_data_parser.cpp" />
-    <ClCompile Include="..\..\map_render_agg\code\source\main.cpp" />
-    <ClCompile Include="..\..\map_render_agg\code\source\mapr_stdafx.cpp" />
-    <ClCompile Include="..\..\map_render_agg\code\source\png_productor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\map_render_agg\code\source\agg_frame.h" />
-    <ClInclude Include="..\..\map_render_agg\code\source\grid_data_parser.h" />
-    <ClInclude Include="..\..\map_render_agg\code\source\mapr_basic_type.h" />
-    <ClInclude Include="..\..\map_render_agg\code\source\mapr_stdafx.h" />
-    <ClInclude Include="..\..\map_render_agg\code\source\pixel_formats.h" />
-    <ClInclude Include="..\..\map_render_agg\code\source\png_productor.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{02DF060C-7992-478F-8962-1DC76FDEA56E}</ProjectGuid>
+    <ProjectGuid>{8205F9DC-73DB-4C49-86E6-E807A261E91E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>map_render_agg</RootNamespace>
+    <RootNamespace>k_nearest_neighbor</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -56,7 +41,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>G:\open_libs\libpng;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -67,14 +51,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../common;../../common/navi_core/include;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../common;../../common/navi_core/lib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,18 +67,25 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../common;../../common/navi_core/include;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../common;../../common/navi_core/lib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\common\gtest\gtest-all.cc" />
+    <ClCompile Include="..\..\common\gtest\gtest_main.cpp" />
+    <ClCompile Include="..\kd_tree.cpp" />
+    <ClCompile Include="..\kd_tree_unittest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\gtest\gtest.h" />
+    <ClInclude Include="..\kd_tree.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
