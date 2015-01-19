@@ -1,32 +1,52 @@
 #pragma once
 #include <deque>
 
-struct Vector2
+struct Vector3
 {
-	float x, y;
+	int x, y, z;
+
+	typedef bool LessFunction(const Vector3&, const Vector3&);
+	static LessFunction* getLessFunction(int dimension)
+	{
+		switch (dimension)
+		{
+		case 0:
+			return less < 0 > ;
+		case 1:
+			return less < 1 > ;
+		case 2:
+			return less < 2 > ;
+		default:
+			return NULL;
+		}
+	}
 	
-	static bool lessX(const Vector2& l, const Vector2& r)
+	template<int>
+	static bool less(const Vector3& l, const Vector3& r);
+
+	template<>
+	static bool less<0>(const Vector3& l, const Vector3& r)
 	{ return l.x < r.x; }
 
-	static bool lessY(const Vector2& l, const Vector2& r)
-	{ return l.x < r.x; }
-};
+	template<>
+	static bool less<1>(const Vector3& l, const Vector3& r)
+	{ return l.y < r.y; }
 
-enum SortDirection
-{
-	SortDirection_x,
-	SortDirection_y
+	template<>
+	static bool less<2>(const Vector3& l, const Vector3& r)
+	{
+		return l.z < r.z;
+	}
 };
 
 struct KDNode
 {
 	KDNode* lChild;
 	KDNode* rChild;
-	SortDirection ki;			// 子Node排序向量方向
-	float kv;		/**< partition key value *///直方图方差最大向量系列中最中间模值  
-	bool isLeaf;                    /**< 1 if node is a leaf, 0 otherwise */
-	//struct feature* features;    /**< features at this node */
-	//int n;                       /**< number of features */
+	Vector3 value;
+	int dimension;
+	int index;
+	//bool isLeaf;
 };
 
 class KDTree
@@ -34,15 +54,10 @@ class KDTree
 public:
 	~KDTree();
 
-	void build(Vector2* datas, size_t num);
+	void build(Vector3* datas, size_t num);
 
-	// always insert as left node.
-	void insert();
-
-	void remove();
-
+	size_t matchBest(Vector3 value);
 private:
-	void addNode();
 
 private:
 	KDNode* m_root;
